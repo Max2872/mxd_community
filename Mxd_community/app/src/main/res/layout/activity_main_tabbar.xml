@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainTabbarActivity">
+    <RelativeLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/commonRed">
+
+        <TextView
+            android:id="@+id/top_bar_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:text="首页"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tab_bar_gift"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/tabbar_gift_image"
+            android:gravity="center"
+            android:text="@string/tab_bar_gift"
+            android:textColor="@drawable/tabbar_text"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tab_bar_card"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/tabbar_card_image"
+            android:gravity="center"
+            android:text="@string/tab_bar_card"
+            android:textColor="@drawable/tabbar_text"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tab_bar_cart"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/tabbar_cart_image"
+            android:gravity="center"
+            android:text="@string/tab_bar_cart"
+            android:textColor="@drawable/tabbar_text"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tab_bar_mine"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/tabbar_mine_image"
+            android:gravity="center"
+            android:text="@string/tab_bar_mine"
+            android:textColor="@drawable/tabbar_text"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="@color/commonBlack"
+        android:layout_above="@id/tab_bar"/>
+
+
+    <FrameLayout
+        android:id="@+id/content_zone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_bar"
+        android:layout_above="@id/tab_bar">
+    </FrameLayout>
+</RelativeLayout>

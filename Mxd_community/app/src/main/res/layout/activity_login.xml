@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="先去看看"
         android:textColor="#ff3939"
-        android:textSize="14dp"
+        android:textSize="14sp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="40dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,7 +24,7 @@
         android:layout_height="match_parent"
         android:text="Welcome to here"
         android:textColor="#777"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:gravity="center_horizontal"
         android:layout_marginTop="100dp"
         android:layout_marginLeft="40dp"
@@ -34,7 +34,7 @@
         android:layout_height="match_parent"
         android:text="欢迎光临"
         android:textColor="#777"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:gravity="center_horizontal"
         android:layout_marginTop="150dp"
         android:layout_marginLeft="40dp"
@@ -52,7 +52,7 @@
             android:layout_height="40dp"
             android:text="手机号："
             android:textColor="#333"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/phoneEdit"
@@ -77,7 +77,7 @@
             android:layout_height="40dp"
             android:text="密    码："
             android:textColor="#333"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/passwardEdit"
@@ -95,7 +95,7 @@
         android:layout_height="wrap_content"
         android:text="已有账号？去登录"
         android:textColor="#444"
-        android:textSize="14dp"
+        android:textSize="14sp"
         android:layout_marginTop="360dp"
         android:layout_marginRight="40dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -112,7 +112,7 @@
             android:layout_height="50dp"
             android:text="注册"
             android:textColor="#444"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:gravity="center"
             android:layout_centerInParent="true"
             android:background="@drawable/shape_corner"/>
