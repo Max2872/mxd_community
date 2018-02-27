@@ -39,7 +39,7 @@
             android:gravity="center"
             android:text="@string/tab_bar_gift"
             android:textColor="@drawable/tabbar_text"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tab_bar_card"
@@ -51,7 +51,7 @@
             android:gravity="center"
             android:text="@string/tab_bar_card"
             android:textColor="@drawable/tabbar_text"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tab_bar_cart"
@@ -63,7 +63,7 @@
             android:gravity="center"
             android:text="@string/tab_bar_cart"
             android:textColor="@drawable/tabbar_text"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tab_bar_mine"
@@ -75,7 +75,7 @@
             android:gravity="center"
             android:text="@string/tab_bar_mine"
             android:textColor="@drawable/tabbar_text"
-            android:textSize="16sp"/>
+            android:textSize="14sp"/>
 
     </LinearLayout>
 

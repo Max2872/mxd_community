@@ -6,7 +6,6 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.githang.statusbar.StatusBarCompat;
@@ -36,6 +35,7 @@ public class MainTabbarActivity extends AppCompatActivity implements View.OnClic
         StatusBarCompat.setStatusBarColor(this,getResources().getColor(R.color.commonRed),true);
         fragmentManager = getFragmentManager();
         bindViews();
+        giftTabBar.performClick();
     }
     private void bindViews() {
         textTopBar = (TextView) findViewById(R.id.top_bar_text);
