@@ -7,4 +7,5 @@
     <color name="white">#fff</color>
     <color name="commonBlack">#444</color>
     <color name="seperateBlack">#999</color>
+    <color name="imageColor">#0ff</color>
 </resources>

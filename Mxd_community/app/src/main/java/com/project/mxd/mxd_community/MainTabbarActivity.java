@@ -31,7 +31,7 @@ public class MainTabbarActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_tabbar);
+        setContentView(R.layout.main_tabbar);
         StatusBarCompat.setStatusBarColor(this,getResources().getColor(R.color.commonRed),true);
         fragmentManager = getFragmentManager();
         bindViews();

@@ -2,5 +2,46 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <TextView
+        android:id="@+id/recommand_box"
+        android:layout_width="170dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="80dp"
+        android:text="推荐礼盒"
+        android:textColor="@color/commonBlack"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/shape_corner"/>
+    <TextView
+        android:id="@+id/recommand_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recommand_box"
+        android:layout_marginTop="4dp"
+        android:text="填写相应的选项，就可以得到系统推荐的礼盒"
+        android:textColor="@color/seperateBlack"
+        android:textSize="9sp"
+        android:gravity="center" />
+    <TextView
+        android:id="@+id/custom_box"
+        android:layout_width="170dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/recommand_box"
+        android:text="自由搭配"
+        android:textColor="@color/commonBlack"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/shape_corner"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/custom_box"
+        android:layout_marginTop="4dp"
+        android:text="查看所有的礼盒，挑选1件以上的礼物合成礼盒"
+        android:textColor="@color/seperateBlack"
+        android:textSize="9sp"
+        android:gravity="center" />
 </RelativeLayout>
