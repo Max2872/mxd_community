@@ -4,12 +4,12 @@ package com.project.mxd.mxd_community;
  * Created by maohs on 2018/3/5.
  */
 
-public class BoxItem {
+public class GiftBoxItem {
     private int imageId;
     private String boxName;
     private String boxPrice;
-    public BoxItem() {}
-    public BoxItem(int imageId,String boxName,String boxPrice) {
+    public GiftBoxItem() {}
+    public GiftBoxItem(int imageId, String boxName, String boxPrice) {
         this.imageId = imageId;
         this.boxName = boxName;
         this.boxPrice = boxPrice;
