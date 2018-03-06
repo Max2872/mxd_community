@@ -25,4 +25,11 @@
             android:textColor="@color/white"
             android:text="订单管理"/>
     </RelativeLayout>
+    <ListView
+        android:id="@+id/order_list"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/top_bar"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="wrap_content"></ListView>
 </RelativeLayout>

@@ -14,7 +14,7 @@ import java.util.LinkedList;
  * Created by maohs on 2018/3/5.
  */
 
-public abstract class OrderManagerAdapter extends BaseAdapter {
+public class OrderManagerAdapter extends BaseAdapter {
     private LinkedList<OrderManagerItem> itemData;
     private Context itemContext;
 
@@ -41,12 +41,34 @@ public abstract class OrderManagerAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = LayoutInflater.from(itemContext).inflate(R.layout.order_manager_item,parent,false);
-//        ImageView img_icon = (TextView) convertView.findViewById(R.id.img_icon);
-//        TextView txt_aName = (TextView) convertView.findViewById(R.id.txt_aName);
-//        TextView txt_aSpeak = (TextView) convertView.findViewById(R.id.txt_aSpeak);
-//        img_icon.setBackgroundResource(mData.get(position).getaIcon());
-//        txt_aName.setText(itemData.get(position).getaName());
-//        txt_aSpeak.setText(itemData.get(position).get());
+        TextView goods_name = (TextView) convertView.findViewById(R.id.goods_name);
+        TextView price_num = (TextView) convertView.findViewById(R.id.price_num);
+        TextView receiver_name = (TextView) convertView.findViewById(R.id.receiver_name);
+        TextView logistics = (TextView) convertView.findViewById(R.id.logistics);
+        TextView order_detail = (TextView) convertView.findViewById(R.id.order_detail);
+        TextView order_service = (TextView) convertView.findViewById(R.id.order_service);
+        goods_name.setText(itemData.get(position).getGoodsName());
+        price_num.setText(itemData.get(position).getGoodsPrice());
+        receiver_name.setText(itemData.get(position).getReceiver());
+
+        logistics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        order_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        order_service.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         return convertView;
     }
 }
