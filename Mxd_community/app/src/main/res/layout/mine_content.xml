@@ -32,9 +32,9 @@
                 android:layout_alignTop="@+id/avatar"
                 android:layout_toRightOf="@+id/avatar"/>
             <TextView
+                android:id="@+id/accountContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="18217752872"
                 android:textColor="@color/commonBlack"
                 android:textSize="16sp"
                 android:layout_marginLeft="10dp"
@@ -42,6 +42,7 @@
                 android:layout_alignTop="@+id/avatar"
                 android:layout_toRightOf="@+id/accountDesc"/>
             <TextView
+                android:id="@+id/accountSignature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="个性签名：在平坦的路面上曲折前行。"
@@ -49,6 +50,17 @@
                 android:textSize="13sp"
                 android:layout_alignLeft="@+id/accountDesc"
                 android:layout_alignBottom="@+id/avatar"/>
+            <TextView
+                android:id="@+id/loginBtn"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                android:text="登录/注册"
+                android:textColor="#444"
+                android:textSize="14sp"
+                android:background="@drawable/shape_corner"
+                android:visibility="gone"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/orderItem"
