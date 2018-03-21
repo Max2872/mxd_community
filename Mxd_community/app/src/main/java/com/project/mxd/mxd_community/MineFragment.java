@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,8 +42,9 @@ public class MineFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                intent.putExtra("hasLogin",true);
                 startActivity(intent);
             }
         });
@@ -58,15 +60,22 @@ public class MineFragment extends Fragment {
                 }else  {
                     Intent intent = new Intent();
                     intent.setClass(getActivity(), LoginActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                    intent.putExtra("hasLogin",true);
                     startActivity(intent);
                 }
             }
         });
-        initData();
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
+    }
+
     private void initData() {
         SharedPreferences preferences = getActivity().getSharedPreferences("userPreference", Context.MODE_PRIVATE);
         shouldLogin = preferences.getBoolean("shouldLogin",false);
@@ -76,6 +85,11 @@ public class MineFragment extends Fragment {
             accountSignature.setVisibility(View.GONE);
             loginBtn.setVisibility(View.VISIBLE);
             return;
+        }else {
+            accountDesc.setVisibility(View.VISIBLE);
+            accountContent.setVisibility(View.VISIBLE);
+            accountSignature.setVisibility(View.VISIBLE);
+            loginBtn.setVisibility(View.GONE);
         }
         CommunityOpenHelper communityOpenHelper = new CommunityOpenHelper(getActivity(),"community.db",null,1);
         SQLiteDatabase db = communityOpenHelper.getReadableDatabase();

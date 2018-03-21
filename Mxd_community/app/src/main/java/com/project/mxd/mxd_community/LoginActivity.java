@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
+    private boolean hasLogin;
     private CommunityOpenHelper communityOpenHelper;
     private EditText phoneEdit;
     private EditText passwardEdit;
@@ -28,7 +29,8 @@ public class LoginActivity extends AppCompatActivity {
         initViews();
     }
     private void initViews() {
-
+        Intent originIntent = getIntent();
+        hasLogin = originIntent.getBooleanExtra("hasLogin",false);
         communityOpenHelper = new CommunityOpenHelper(LoginActivity.this,"community.db",null,1);
         TextView ignoreBtn =(TextView)findViewById(R.id.ignore_btn);
         final TextView loginDesc = (TextView)findViewById(R.id.loginDesc);
@@ -45,6 +47,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 savePreference(false);
+                if (hasLogin) {
+                    finish();
+                    return;
+                }
                 Intent intent = new Intent();
                 intent.setClass(LoginActivity.this, MainTabbarActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -91,6 +97,10 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 saveUserInfo(phoneNum,passward);
                 savePreference(true);
+                if (hasLogin) {
+                    finish();
+                    return;
+                }
                 Intent intent = new Intent();
                 intent.setClass(LoginActivity.this, MainTabbarActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
