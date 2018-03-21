@@ -85,7 +85,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
-                android:background="@color/commonBlack"/>
+                android:background="@drawable/right_arrow"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/walletItem"
@@ -110,7 +110,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
-                android:background="@color/commonBlack"/>
+                android:background="@drawable/right_arrow"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/addressItem"
@@ -135,7 +135,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
-                android:background="@color/commonBlack"/>
+                android:background="@drawable/right_arrow"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/remindItem"
@@ -160,7 +160,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
-                android:background="@color/commonBlack"/>
+                android:background="@drawable/right_arrow"/>
         </RelativeLayout>
         <View
             android:layout_width="match_parent"
