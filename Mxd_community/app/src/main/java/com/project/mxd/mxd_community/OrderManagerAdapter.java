@@ -1,6 +1,7 @@
 package com.project.mxd.mxd_community;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,19 +55,22 @@ public class OrderManagerAdapter extends BaseAdapter {
         logistics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(itemContext,LogisticActivity.class);
+                itemContext.startActivity(intent);
             }
         });
         order_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(itemContext,OrderDetailActivity.class);
+                itemContext.startActivity(intent);
             }
         });
         order_service.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(itemContext,OrderServiceActivity.class);
+                itemContext.startActivity(intent);
             }
         });
         return convertView;
