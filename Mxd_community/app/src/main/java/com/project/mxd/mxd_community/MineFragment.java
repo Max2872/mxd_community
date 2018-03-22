@@ -51,20 +51,26 @@ public class MineFragment extends Fragment {
         orderItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (shouldLogin) {
-                    Intent intent = new Intent();
-                    intent.setClass(getActivity(), OrderManagerActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                    startActivity(intent);
-                }else  {
-                    Intent intent = new Intent();
-                    intent.setClass(getActivity(), LoginActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                    intent.putExtra("hasLogin",true);
-                    startActivity(intent);
-                }
+                Intent tempIntent = new Intent();
+                tempIntent.setClass(getActivity(), OrderManagerActivity.class);
+                tempIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                tempIntent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                startActivity(tempIntent);
+                return;
+//                if (shouldLogin) {
+//                    Intent intent = new Intent();
+//                    intent.setClass(getActivity(), OrderManagerActivity.class);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+//                    startActivity(intent);
+//                }else  {
+//                    Intent intent = new Intent();
+//                    intent.setClass(getActivity(), LoginActivity.class);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+//                    intent.putExtra("hasLogin",true);
+//                    startActivity(intent);
+//                }
             }
         });
         return view;
