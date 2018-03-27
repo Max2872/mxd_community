@@ -1,5 +1,6 @@
 package com.project.mxd.mxd_community;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -57,7 +58,11 @@ public class GiftBoxListActivity extends AppCompatActivity {
         grid_item.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Intent intent = new Intent();
+                intent.setClass(GiftBoxListActivity.this,GoodsDetailActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                startActivity(intent);
             }
         });
 

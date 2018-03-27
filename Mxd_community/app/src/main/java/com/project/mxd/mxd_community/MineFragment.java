@@ -20,22 +20,27 @@ import android.widget.TextView;
  */
 
 public class MineFragment extends Fragment {
+    private CommunityOpenHelper communityOpenHelper;
     private boolean shouldLogin;
     private TextView accountDesc;
     private TextView accountContent;
     private TextView accountSignature;
     private TextView loginBtn;
     private RelativeLayout orderItem;
+    private TextView logoutBtn;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mine_content,container,false);
+        communityOpenHelper = new CommunityOpenHelper(getActivity(),"community.db",null,1);
+
         accountDesc = (TextView)view.findViewById(R.id.accountDesc);
         accountContent = (TextView)view.findViewById(R.id.accountContent);
         accountSignature = (TextView)view.findViewById(R.id.accountSignature);
         loginBtn = (TextView)view.findViewById(R.id.loginBtn);
         orderItem = (RelativeLayout) view.findViewById(R.id.orderItem);
+        logoutBtn = (TextView)view.findViewById(R.id.logoutBtn);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,26 +56,33 @@ public class MineFragment extends Fragment {
         orderItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent tempIntent = new Intent();
-                tempIntent.setClass(getActivity(), OrderManagerActivity.class);
-                tempIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                tempIntent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                startActivity(tempIntent);
-                return;
-//                if (shouldLogin) {
-//                    Intent intent = new Intent();
-//                    intent.setClass(getActivity(), OrderManagerActivity.class);
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-//                    startActivity(intent);
-//                }else  {
-//                    Intent intent = new Intent();
-//                    intent.setClass(getActivity(), LoginActivity.class);
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-//                    intent.putExtra("hasLogin",true);
-//                    startActivity(intent);
-//                }
+                if (shouldLogin) {
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), OrderManagerActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                    startActivity(intent);
+                }else  {
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                    intent.putExtra("hasLogin",true);
+                    startActivity(intent);
+                }
+            }
+        });
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SQLiteDatabase db = communityOpenHelper.getWritableDatabase();
+                db.delete("userInfo",null,null);
+                db.close();
+                SharedPreferences preference = getActivity().getSharedPreferences("userPreference", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preference.edit();
+                editor.remove("shouldLogin");
+                editor.commit();
+                initData();
             }
         });
         return view;
@@ -89,15 +101,16 @@ public class MineFragment extends Fragment {
             accountDesc.setVisibility(View.GONE);
             accountContent.setVisibility(View.GONE);
             accountSignature.setVisibility(View.GONE);
+            logoutBtn.setVisibility(View.GONE);
             loginBtn.setVisibility(View.VISIBLE);
             return;
         }else {
             accountDesc.setVisibility(View.VISIBLE);
             accountContent.setVisibility(View.VISIBLE);
             accountSignature.setVisibility(View.VISIBLE);
+            logoutBtn.setVisibility(View.VISIBLE);
             loginBtn.setVisibility(View.GONE);
         }
-        CommunityOpenHelper communityOpenHelper = new CommunityOpenHelper(getActivity(),"community.db",null,1);
         SQLiteDatabase db = communityOpenHelper.getReadableDatabase();
         Cursor cursor = db.query("userInfo",null,null,null,null,null,null);
         try {

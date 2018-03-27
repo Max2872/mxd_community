@@ -27,7 +27,7 @@ public class GiftFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), GiftBoxListActivity.class);
+                intent.setClass(getActivity(), GiftBoxSettingActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                 startActivity(intent);
@@ -36,7 +36,11 @@ public class GiftFragment extends Fragment {
         customTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), GiftBoxListActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                startActivity(intent);
             }
         });
         return view;
