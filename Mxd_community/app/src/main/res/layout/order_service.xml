@@ -43,15 +43,13 @@
                 android:textSize="18sp"
                 android:textColor="@color/commonBlack"
                 android:layout_alignParentLeft="true"/>
-            <TextView
-                android:id="@+id/reason"
+            <Spinner
+                android:id="@+id/spin_one"
                 android:layout_width="match_parent"
-                android:layout_height="18sp"
+                android:layout_height="30dp"
                 android:layout_toRightOf="@+id/reasonDesc"
                 android:layout_marginLeft="10dp"
-                android:layout_alignParentRight="true"
-                android:text="下拉选择"
-                android:textColor="@color/lightBlack" />
+                android:layout_alignParentRight="true"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -67,15 +65,13 @@
                 android:textSize="18sp"
                 android:textColor="@color/commonBlack"
                 android:layout_alignParentLeft="true"/>
-            <TextView
-                android:id="@+id/serviceMode"
+            <Spinner
+                android:id="@+id/spin_two"
                 android:layout_width="match_parent"
-                android:layout_height="18sp"
+                android:layout_height="30dp"
                 android:layout_toRightOf="@+id/serviceDesc"
                 android:layout_marginLeft="10dp"
-                android:layout_alignParentRight="true"
-                android:text="下拉选择"
-                android:textColor="@color/lightBlack"/>
+                android:layout_alignParentRight="true"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
