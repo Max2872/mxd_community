@@ -26,12 +26,20 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        communityOpenHelper = new CommunityOpenHelper(LoginActivity.this,"community.db",null,1);
+        if (hasUserInfo()) {
+            Intent intent = new Intent();
+            intent.setClass(LoginActivity.this, MainTabbarActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+            startActivity(intent);
+            return;
+        }
         initViews();
     }
     private void initViews() {
         Intent originIntent = getIntent();
         hasLogin = originIntent.getBooleanExtra("hasLogin",false);
-        communityOpenHelper = new CommunityOpenHelper(LoginActivity.this,"community.db",null,1);
         TextView ignoreBtn =(TextView)findViewById(R.id.ignore_btn);
         final TextView loginDesc = (TextView)findViewById(R.id.loginDesc);
         final TextView loginBtn = (TextView)findViewById(R.id.login_btn);
@@ -134,6 +142,26 @@ public class LoginActivity extends AppCompatActivity {
             cursor.close();
         }
         db.close();
+    }
+    private boolean hasUserInfo() {
+        boolean hasData = false;
+        SQLiteDatabase db = communityOpenHelper.getReadableDatabase();
+        Cursor cursor = db.query("userInfo",null,null,null,null,null,null);
+        try {
+            if (cursor != null && cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    hasData = true;
+                }
+            }else  {
+
+            }
+        }catch (Exception e) {
+
+        }finally {
+            cursor.close();
+        }
+        db.close();
+        return hasData;
     }
     private void savePreference(boolean shouldLogin) {
         SharedPreferences preference = LoginActivity.this.getSharedPreferences("userPreference", Context.MODE_PRIVATE);
