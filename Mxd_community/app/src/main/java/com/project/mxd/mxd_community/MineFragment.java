@@ -8,12 +8,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by maohs on 2018/2/27.
@@ -21,18 +22,22 @@ import android.widget.TextView;
 
 public class MineFragment extends Fragment {
     private CommunityOpenHelper communityOpenHelper;
+    private View view;
     private boolean shouldLogin;
     private TextView accountDesc;
     private TextView accountContent;
     private TextView accountSignature;
     private TextView loginBtn;
     private RelativeLayout orderItem;
+    private RelativeLayout walletItem;
+    private RelativeLayout addressItem;
+    private RelativeLayout remindItem;
     private TextView logoutBtn;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.mine_content,container,false);
+        view = inflater.inflate(R.layout.mine_content,container,false);
         communityOpenHelper = new CommunityOpenHelper(getActivity(),"community.db",null,1);
 
         accountDesc = (TextView)view.findViewById(R.id.accountDesc);
@@ -40,17 +45,15 @@ public class MineFragment extends Fragment {
         accountSignature = (TextView)view.findViewById(R.id.accountSignature);
         loginBtn = (TextView)view.findViewById(R.id.loginBtn);
         orderItem = (RelativeLayout) view.findViewById(R.id.orderItem);
+        walletItem = (RelativeLayout) view.findViewById(R.id.walletItem);
+        addressItem = (RelativeLayout) view.findViewById(R.id.addressItem);
+        remindItem = (RelativeLayout) view.findViewById(R.id.remindItem);
         logoutBtn = (TextView)view.findViewById(R.id.logoutBtn);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                intent.putExtra("hasLogin",true);
-                startActivity(intent);
+                toLoginActivity();
             }
         });
         orderItem.setOnClickListener(new View.OnClickListener() {
@@ -63,25 +66,52 @@ public class MineFragment extends Fragment {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                     startActivity(intent);
                 }else  {
+                    toLoginActivity();
+                }
+            }
+        });
+        walletItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (shouldLogin) {
+                    customToast("成功充值500元，零钱余额1000元",2);
+                }else  {
+                    toLoginActivity();
+                }
+            }
+        });
+        addressItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (shouldLogin) {
                     Intent intent = new Intent();
-                    intent.setClass(getActivity(), LoginActivity.class);
+                    intent.setClass(getActivity(), OrderManagerActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                    intent.putExtra("hasLogin",true);
                     startActivity(intent);
+                }else  {
+                    toLoginActivity();
+                }
+            }
+        });
+        remindItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (shouldLogin) {
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), OrderManagerActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                    startActivity(intent);
+                }else  {
+                    toLoginActivity();
                 }
             }
         });
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SQLiteDatabase db = communityOpenHelper.getWritableDatabase();
-                db.delete("userInfo",null,null);
-                db.close();
-                SharedPreferences preference = getActivity().getSharedPreferences("userPreference", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = preference.edit();
-                editor.remove("shouldLogin");
-                editor.commit();
+                clearPreference();
                 initData();
             }
         });
@@ -127,5 +157,33 @@ public class MineFragment extends Fragment {
             cursor.close();
         }
         db.close();
+    }
+    private void toLoginActivity() {
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+        intent.putExtra("hasLogin",true);
+        startActivity(intent);
+    }
+    private void clearPreference() {
+        SQLiteDatabase db = communityOpenHelper.getWritableDatabase();
+        db.delete("userInfo",null,null);
+        db.close();
+        SharedPreferences preference = getActivity().getSharedPreferences("userPreference", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preference.edit();
+        editor.remove("shouldLogin");
+        editor.commit();
+    }
+    private void customToast(String string,int showTime) {
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View view1 = inflater.inflate(R.layout.mine_toast_custom,(ViewGroup) view.findViewById(R.id.mineToat));
+        TextView toastMsg = (TextView)view1.findViewById(R.id.toastMsg);
+        toastMsg.setText(string);
+        Toast toast = new Toast(getActivity());
+        toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,300);
+        toast.setDuration(showTime);
+        toast.setView(view1);
+        toast.show();
     }
 }

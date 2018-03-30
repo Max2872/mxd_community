@@ -3,7 +3,6 @@ package com.project.mxd.mxd_community;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -81,7 +80,7 @@ public class CustomGoodsDetailActivity extends AppCompatActivity {
     }
     private void customToast(String string,int showTime) {
         LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.toast_custom,(ViewGroup) findViewById(R.id.goodsDetailToat));
+        View view = inflater.inflate(R.layout.goods_detail_toast_custom,(ViewGroup) findViewById(R.id.goodsDetailToat));
         TextView toastMsg = (TextView)view.findViewById(R.id.toastMsg);
         toastMsg.setText(string);
         Toast toast = new Toast(CustomGoodsDetailActivity.this);
