@@ -85,7 +85,7 @@ public class MineFragment extends Fragment {
             public void onClick(View v) {
                 if (shouldLogin) {
                     Intent intent = new Intent();
-                    intent.setClass(getActivity(), OrderManagerActivity.class);
+                    intent.setClass(getActivity(), AddressManagerActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                     startActivity(intent);
@@ -99,7 +99,7 @@ public class MineFragment extends Fragment {
             public void onClick(View v) {
                 if (shouldLogin) {
                     Intent intent = new Intent();
-                    intent.setClass(getActivity(), OrderManagerActivity.class);
+                    intent.setClass(getActivity(), RemindActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                     startActivity(intent);

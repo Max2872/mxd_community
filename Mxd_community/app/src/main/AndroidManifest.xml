@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!--登录-->
         <activity android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -17,6 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--主页-->
         <activity android:name=".MainTabbarActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -25,6 +27,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!--礼盒列表-->
         <activity android:name=".GiftBoxListActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -33,6 +36,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!--礼盒定制-->
         <activity android:name=".GiftBoxSettingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -41,6 +45,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!--商品详情-->
         <activity android:name=".GoodsDetailActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -49,6 +54,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!--定制礼盒商品详情-->
         <activity android:name=".CustomGoodsDetailActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -57,6 +63,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!--填写订单-->
         <activity android:name=".EditOrderActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -65,6 +72,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!--订单管理-->
         <activity android:name=".OrderManagerActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -73,6 +81,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!--订单详情-->
         <activity android:name=".OrderDetailActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -81,6 +90,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!--售后-->
         <activity android:name=".OrderServiceActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -89,6 +99,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!--售后结果-->
         <activity android:name=".ServiceResultActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -97,7 +108,26 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!--物流-->
         <activity android:name=".LogisticActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!--地址管理-->
+        <activity android:name=".AddressManagerActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!--提醒-->
+        <activity android:name=".RemindActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
