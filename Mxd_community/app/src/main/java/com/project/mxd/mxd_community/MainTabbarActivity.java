@@ -38,6 +38,7 @@ public class MainTabbarActivity extends AppCompatActivity implements View.OnClic
         fragmentManager = getFragmentManager();
         bindViews();
         giftTabBar.performClick();
+        LoginActivity.loginInstance.finish();
     }
 
     @Override
@@ -150,4 +151,5 @@ public class MainTabbarActivity extends AppCompatActivity implements View.OnClic
         }
         fragmentTransaction.commit();
     }
+
 }

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
+    public static LoginActivity loginInstance;
     private boolean hasLogin;
     private CommunityOpenHelper communityOpenHelper;
     private EditText phoneEdit;
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        loginInstance = this;
         communityOpenHelper = new CommunityOpenHelper(LoginActivity.this,"community.db",null,1);
         if (hasUserInfo()) {
             Intent intent = new Intent();
