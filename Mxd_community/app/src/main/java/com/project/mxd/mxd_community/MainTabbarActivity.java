@@ -1,10 +1,12 @@
 package com.project.mxd.mxd_community;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -37,6 +39,29 @@ public class MainTabbarActivity extends AppCompatActivity implements View.OnClic
         bindViews();
         giftTabBar.performClick();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent originIntent = getIntent();
+        boolean toCart = originIntent.getBooleanExtra("toCart",false);
+        if (toCart) {
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            hideAllFragment(fragmentTransaction);
+            setSelected();
+            cartTabBar.setSelected(true);
+            textTopBar.setText("购物车");
+            if (cartFragment == null) {
+                cartFragment = new CartFragment();
+                fragmentTransaction.add(R.id.content_zone,cartFragment);
+            }else  {
+                fragmentTransaction.show(cartFragment);
+            }
+            fragmentTransaction.commit();
+            originIntent.putExtra("toCart",false);
+        }
+    }
+
     private void bindViews() {
         textTopBar = (TextView) findViewById(R.id.top_bar_text);
         giftTabBar = (TextView) findViewById(R.id.tab_bar_gift);

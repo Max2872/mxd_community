@@ -70,11 +70,16 @@
         android:gravity="bottom"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true">
-        <View
+        <TextView
             android:id="@+id/cartBtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="5"></View>
+            android:drawableTop="@drawable/goodsdetail_cart"
+            android:text="购物车"
+            android:textColor="@color/commonBlack"
+            android:textSize="12sp"
+            android:gravity="center_horizontal"
+            android:layout_weight="5"/>
         <TextView
             android:id="@+id/cartHint"
             android:layout_width="match_parent"
@@ -82,7 +87,7 @@
             android:layout_weight="2"
             android:gravity="center"
             android:text="加入购物车"
-            android:textColor="@color/white"
+            android:textColor="@color/commonBlack"
             android:textSize="15sp"
             android:background="#fece45"/>
     </LinearLayout>
