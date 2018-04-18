@@ -27,9 +27,9 @@ public class GiftFragment extends Fragment {
         recommandTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                savePreference(true);
+                savePreference(false);
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), GiftBoxSettingActivity.class);
+                intent.setClass(getActivity(), GiftBoxListActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                 startActivity(intent);
@@ -38,9 +38,9 @@ public class GiftFragment extends Fragment {
         customTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                savePreference(false);
+                savePreference(true);
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), GiftBoxListActivity.class);
+                intent.setClass(getActivity(), GiftBoxSettingActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                 startActivity(intent);
