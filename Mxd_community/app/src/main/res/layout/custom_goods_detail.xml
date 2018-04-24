@@ -69,7 +69,8 @@
         android:layout_height="44dp"
         android:gravity="bottom"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/tab_bar_border">
         <TextView
             android:id="@+id/cartBtn"
             android:layout_width="match_parent"
