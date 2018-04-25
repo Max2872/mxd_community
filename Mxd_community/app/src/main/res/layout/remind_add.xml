@@ -24,20 +24,6 @@
             android:gravity="center"
             android:textSize="18sp"
             android:textColor="@color/white"
-            android:text="提醒"/>
-        <ImageView
-            android:id="@+id/remindAdd"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="25dp"
-            android:background="#0ff"/>
+            android:text="新建提醒"/>
     </RelativeLayout>
-    <ListView
-        android:id="@+id/remind_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="#00000000">
-    </ListView>
 </LinearLayout>
