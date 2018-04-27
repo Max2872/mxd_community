@@ -68,13 +68,13 @@
                     android:textSize="16sp"/>
                 <ImageView
                     android:id="@+id/addressIcon"
-                    android:layout_width="10dp"
+                    android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentLeft="true"
                     android:layout_below="@+id/recieverDesc"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
-                    android:background="@color/commonRed"/>
+                    android:background="@drawable/locate_address"/>
                 <TextView
                     android:id="@+id/addressContent"
                     android:layout_width="match_parent"
@@ -88,13 +88,13 @@
                     android:textSize="14sp"/>
                 <ImageView
                     android:id="@+id/addressMark"
-                    android:layout_width="10dp"
+                    android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/recieverDesc"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="15dp"
-                    android:background="@color/commonRed"/>
+                    android:background="@drawable/general_right_arrow"/>
                 <TextView
                     android:id="@+id/addressHint"
                     android:layout_width="match_parent"
@@ -126,7 +126,7 @@
                     android:layout_height="60dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginTop="20dp"
-                    android:background="#0ff"/>
+                    android:background="@drawable/order_goods_bg"/>
                 <TextView
                     android:id="@+id/goodsName"
                     android:layout_width="wrap_content"
@@ -186,7 +186,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:background="#0ff"/>
+                    android:background="@drawable/goods_add"/>
                 <TextView
                     android:id="@+id/orderNum"
                     android:layout_width="40dp"
@@ -204,7 +204,7 @@
                     android:layout_toLeftOf="@+id/orderNum"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:background="#0ff"/>
+                    android:background="@drawable/goods_dec"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="3px"

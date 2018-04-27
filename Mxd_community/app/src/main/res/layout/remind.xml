@@ -32,7 +32,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="25dp"
-            android:background="#0ff"/>
+            android:background="@drawable/remind_add"/>
     </RelativeLayout>
     <ListView
         android:id="@+id/remind_list"

@@ -17,11 +17,14 @@
         android:layout_alignParentBottom="true"
         android:background="@drawable/tab_bar_border">
         <TextView
+            android:id="@+id/orderSelectAll"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:paddingLeft="20dp"
-            android:gravity="center"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/goods_normal"
+            android:drawablePadding="5dp"
             android:text="全选"
             android:textColor="#333"
             android:textSize="14sp"/>

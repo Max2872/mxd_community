@@ -80,12 +80,12 @@
                 android:textColor="@color/commonBlack"
                 android:textSize="14sp"/>
             <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="20dp"
+                android:layout_height="25dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/right_arrow"/>
+                android:background="@drawable/mine_right_arrow"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/walletItem"
@@ -105,12 +105,12 @@
                 android:textColor="@color/commonBlack"
                 android:textSize="14sp"/>
             <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="20dp"
+                android:layout_height="25dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/right_arrow"/>
+                android:background="@drawable/mine_right_arrow"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/addressItem"
@@ -130,12 +130,12 @@
                 android:textColor="@color/commonBlack"
                 android:textSize="14sp"/>
             <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="20dp"
+                android:layout_height="25dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/right_arrow"/>
+                android:background="@drawable/mine_right_arrow"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/remindItem"
@@ -155,12 +155,12 @@
                 android:textColor="@color/commonBlack"
                 android:textSize="14sp"/>
             <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="20dp"
+                android:layout_height="25dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/right_arrow"/>
+                android:background="@drawable/mine_right_arrow"/>
         </RelativeLayout>
         <View
             android:layout_width="match_parent"

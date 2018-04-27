@@ -76,6 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:drawableTop="@drawable/goodsdetail_cart"
+            android:layout_marginTop="2dp"
             android:text="购物车"
             android:textColor="@color/commonBlack"
             android:textSize="12sp"
