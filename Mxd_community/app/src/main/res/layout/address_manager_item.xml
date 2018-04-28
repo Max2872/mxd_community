@@ -60,8 +60,8 @@
         android:textSize="13sp"/>
     <ImageView
         android:id="@+id/addressEditImage"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignTop="@+id/addressSelectedImage"
         android:layout_toLeftOf="@+id/addressEditHint"
         android:layout_marginRight="3dp"
@@ -79,8 +79,8 @@
         android:textSize="13sp"/>
     <ImageView
         android:id="@+id/addressDeleteImage"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignTop="@+id/addressSelectedImage"
         android:layout_toLeftOf="@+id/addressDeleteHint"
         android:layout_marginRight="3dp"
