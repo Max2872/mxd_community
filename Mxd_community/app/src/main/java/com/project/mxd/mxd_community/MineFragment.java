@@ -1,6 +1,7 @@
 package com.project.mxd.mxd_community;
 
 import android.app.Fragment;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +34,11 @@ public class MineFragment extends Fragment {
     private RelativeLayout walletItem;
     private RelativeLayout addressItem;
     private RelativeLayout remindItem;
+
+    private TextView walletContent;
     private TextView logoutBtn;
+
+    private String walletString = "0";
 
     @Nullable
     @Override
@@ -48,6 +54,7 @@ public class MineFragment extends Fragment {
         walletItem = (RelativeLayout) view.findViewById(R.id.walletItem);
         addressItem = (RelativeLayout) view.findViewById(R.id.addressItem);
         remindItem = (RelativeLayout) view.findViewById(R.id.remindItem);
+        walletContent = (TextView) view.findViewById(R.id.walletContent);
         logoutBtn = (TextView)view.findViewById(R.id.logoutBtn);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -74,8 +81,14 @@ public class MineFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (shouldLogin) {
-                    customToast("成功充值500元，零钱余额1000元",2);
+                    Integer tempNum = Integer.parseInt(walletString);
+                    tempNum += 500;
+                    customToast("成功充值500元，零钱余额" + tempNum + "元",2);
+                    walletString = tempNum + "";
+                    walletContent.setText(tempNum.toString() + "元");
                 }else  {
+                    walletString = "0";
+                    walletContent.setText(walletString + "元");
                     toLoginActivity();
                 }
             }
@@ -124,6 +137,18 @@ public class MineFragment extends Fragment {
         initData();
     }
 
+    @Override
+    public void onPause() {
+        if (shouldLogin) {
+            SQLiteDatabase db = communityOpenHelper.getWritableDatabase();
+            ContentValues value = new ContentValues();
+            value.put("wallet",walletString);
+            db.update("userInfo",value,null,null);
+            db.close();
+        }
+        super.onPause();
+    }
+
     private void initData() {
         SharedPreferences preferences = getActivity().getSharedPreferences("userPreference", Context.MODE_PRIVATE);
         shouldLogin = preferences.getBoolean("shouldLogin",false);
@@ -147,6 +172,11 @@ public class MineFragment extends Fragment {
             if (cursor != null && cursor.getCount() > 0) {
                 if (cursor.moveToFirst()) {
                     accountContent.setText(cursor.getString(cursor.getColumnIndex("phoneNum")));
+                    walletString = cursor.getString(cursor.getColumnIndex("wallet"));
+                    if (walletString == null) {
+                        walletString = "0";
+                    }
+                    walletContent.setText(walletString + "元");
                 }
             }else  {
 
@@ -172,7 +202,7 @@ public class MineFragment extends Fragment {
         db.close();
         SharedPreferences preference = getActivity().getSharedPreferences("userPreference", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preference.edit();
-        editor.remove("shouldLogin");
+        editor.clear();
         editor.commit();
     }
     private void customToast(String string,int showTime) {

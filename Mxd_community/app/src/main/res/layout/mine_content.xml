@@ -96,6 +96,7 @@
                 android:layout_height="2px"
                 android:background="@color/seperateBlack"/>
             <TextView
+                android:id="@+id/walletDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
@@ -104,7 +105,21 @@
                 android:text="零钱:充值"
                 android:textColor="@color/commonBlack"
                 android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/walletContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@+id/walletImage"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="30dp"
+                android:text=""
+                android:textAlignment="textEnd"
+                android:textColor="@color/commonBlack"
+                android:textSize="14sp"/>
             <ImageView
+                android:id="@+id/walletImage"
                 android:layout_width="20dp"
                 android:layout_height="25dp"
                 android:layout_centerVertical="true"

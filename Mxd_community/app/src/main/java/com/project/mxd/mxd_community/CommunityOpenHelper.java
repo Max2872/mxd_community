@@ -15,7 +15,7 @@ public class CommunityOpenHelper extends SQLiteOpenHelper {
     //数据库第一次创建时被调用
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE userInfo(userId INTEGER PRIMARY KEY AUTOINCREMENT,phoneNum VARCHAR(15),passward VARCHAR(20))");
+        db.execSQL("CREATE TABLE userInfo(userId INTEGER PRIMARY KEY AUTOINCREMENT,phoneNum VARCHAR(15),passward VARCHAR(20),wallet VARCHAR(20))");
     }
 
     //软件版本号发生改变时调用
