@@ -128,7 +128,6 @@ public class LoginActivity extends AppCompatActivity {
         SQLiteDatabase db = communityOpenHelper.getWritableDatabase();
         Cursor cursor = db.query("userInfo",null,null,null,null,null,null);
         ContentValues value = new ContentValues();
-        value.put("userId",1);
         value.put("phoneNum",phoneNum);
         value.put("passward",passward);
         Log.i("phoneNum",phoneNum);

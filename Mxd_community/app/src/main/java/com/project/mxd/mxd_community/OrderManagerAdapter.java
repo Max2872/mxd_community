@@ -50,7 +50,7 @@ public class OrderManagerAdapter extends BaseAdapter {
         TextView order_service = (TextView) convertView.findViewById(R.id.order_service);
         goods_name.setText(itemData.get(position).getGoodsName());
         price_num.setText(itemData.get(position).getGoodsPrice());
-        receiver_name.setText(itemData.get(position).getReceiver());
+        receiver_name.setText(itemData.get(position).getRecieverName());
 
         logistics.setOnClickListener(new View.OnClickListener() {
             @Override

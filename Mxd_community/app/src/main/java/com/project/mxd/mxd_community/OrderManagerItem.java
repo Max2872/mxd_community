@@ -5,16 +5,29 @@ package com.project.mxd.mxd_community;
  */
 
 public class OrderManagerItem {
+    private String goodsImageId;
     private String goodsName;
     private String goodsPrice;
-    private String receiver;
+
+    private String recieverName;
+    private String recieverPhone;
+    private String recieverAddress;
+
 
     public OrderManagerItem() {}
 
-    public OrderManagerItem(String goodsName, String goodsPrice, String receiver) {
+    public OrderManagerItem(String goodsImageId,String goodsName, String goodsPrice, String recieverName,String recieverPhone,String recieverAddress) {
+        this.goodsImageId = goodsImageId;
         this.goodsName = goodsName;
         this.goodsPrice = goodsPrice;
-        this.receiver = receiver;
+
+        this.recieverName = recieverName;
+        this.recieverPhone = recieverPhone;
+        this.recieverAddress = recieverAddress;
+    }
+
+    public String getGoodsImageId() {
+        return goodsImageId;
     }
 
     public String getGoodsName() {
@@ -25,8 +38,20 @@ public class OrderManagerItem {
         return goodsPrice;
     }
 
-    public String getReceiver() {
-        return receiver;
+    public String getRecieverName() {
+        return recieverName;
+    }
+
+    public String getRecieverPhone() {
+        return recieverPhone;
+    }
+
+    public String getRecieverAddress() {
+        return recieverAddress;
+    }
+
+    public void setGoodsImageId(String goodsImageId) {
+        this.goodsImageId = goodsImageId;
     }
 
     public void setGoodsName(String goodsName) {
@@ -37,7 +62,15 @@ public class OrderManagerItem {
         this.goodsPrice = goodsPrice;
     }
 
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
+    public void setRecieverName(String recieverName) {
+        this.recieverName = recieverName;
+    }
+
+    public void setRecieverPhone(String recieverPhone) {
+        this.recieverPhone = recieverPhone;
+    }
+
+    public void setRecieverAddress(String recieverAddress) {
+        this.recieverAddress = recieverAddress;
     }
 }

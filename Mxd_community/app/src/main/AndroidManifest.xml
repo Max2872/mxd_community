@@ -73,6 +73,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!--支付结果-->
+        <activity android:name=".OrderResultActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <!--订单管理-->
         <activity android:name=".OrderManagerActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

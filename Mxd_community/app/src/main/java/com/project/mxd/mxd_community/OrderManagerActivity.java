@@ -1,6 +1,8 @@
 package com.project.mxd.mxd_community;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -35,9 +37,37 @@ public class OrderManagerActivity extends AppCompatActivity {
         list = (ListView)findViewById(R.id.order_list);
 
         itemData = new LinkedList<OrderManagerItem>();
-        itemData.add(new OrderManagerItem("礼盒1","￥299.0元","马晓东"));
-        itemData.add(new OrderManagerItem("礼盒2","￥199.0元","李晓东"));
-        itemData.add(new OrderManagerItem("礼盒3","￥99.0元","张晓东"));
+
+        String goodsImageId;
+        String goodsName;
+        String goodsPrice;
+
+        String recieverName;
+        String recieverPhone;
+        String recieverAddress;
+        CommunityOpenHelper communityOpenHelper = new CommunityOpenHelper(this,"community.db",null,1);
+        SQLiteDatabase db = communityOpenHelper.getReadableDatabase();
+        Cursor cursor = db.query("orderInfo",null,null,null,null,null,null);
+        try {
+            if (cursor != null && cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    goodsImageId = cursor.getString(cursor.getColumnIndex("goodsImageId"));
+                    goodsName = cursor.getString(cursor.getColumnIndex("goodsName"));
+                    goodsPrice = cursor.getString(cursor.getColumnIndex("goodsPrice"));
+
+                    recieverName = cursor.getString(cursor.getColumnIndex("recieverName"));
+                    recieverPhone = cursor.getString(cursor.getColumnIndex("recieverPhone"));
+                    recieverAddress = cursor.getString(cursor.getColumnIndex("recieverAddress"));
+                    itemData.add(new OrderManagerItem(goodsImageId,goodsName,goodsPrice,recieverName,recieverPhone,recieverAddress));
+                }
+            }
+        }catch (Exception e) {
+
+        }finally {
+            cursor.close();
+        }
+
+
         adapter = new OrderManagerAdapter((LinkedList<OrderManagerItem>)itemData,context);
         list.setAdapter(adapter);
     }

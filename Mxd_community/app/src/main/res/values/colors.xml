@@ -9,4 +9,5 @@
     <color name="lightBlack">#777</color>
     <color name="seperateBlack">#aaa</color>
     <color name="imageColor">#0ff</color>
+    <color name="transparent">#00000000</color>
 </resources>

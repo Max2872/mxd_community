@@ -245,7 +245,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
-                android:background="#0ff"/>
+                android:background="@drawable/order_goods_bg"/>
         </LinearLayout>
     </ScrollView>
     <LinearLayout

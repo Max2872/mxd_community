@@ -81,7 +81,7 @@ public class MineFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (shouldLogin) {
-                    Integer tempNum = Integer.parseInt(walletString);
+                    Float tempNum = Float.parseFloat(walletString);
                     tempNum += 500;
                     customToast("成功充值500元，零钱余额" + tempNum + "元",2);
                     walletString = tempNum + "";
