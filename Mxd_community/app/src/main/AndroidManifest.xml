@@ -29,7 +29,8 @@
         </activity>
         <!--礼盒列表-->
         <activity android:name=".GiftBoxListActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:hardwareAccelerated="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
