@@ -35,33 +35,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <TextView
+            <ImageView
+                android:id="@+id/goodsImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="测试1111"
-                android:background="#ff0"/>
+                />
             <TextView
+                android:id="@+id/goodsName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="300dp"
-                android:gravity="center"
-                android:text="测试22222"
-                android:background="#ff0"/>
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#555"
+                android:textAlignment="center"
+                android:textSize="15sp"/>
             <TextView
+                android:id="@+id/goodsPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="300dp"
-                android:gravity="center"
-                android:text="测试33333"
-                android:background="#ff0"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="300dp"
-                android:gravity="center"
-                android:text="测试4444"
-                android:background="#ff0"/>
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff3939"
+                android:textAlignment="center"
+                android:textSize="15sp"/>
         </LinearLayout>
     </ScrollView>
     <LinearLayout

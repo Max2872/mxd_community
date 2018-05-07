@@ -38,38 +38,38 @@ public class GiftBoxListActivity extends AppCompatActivity {
         });
 
         itemData = new ArrayList<>();
-        itemData.add(new GiftBoxItem(R.drawable.meishi188,"美食--蛋糕","¥188"));
-        itemData.add(new GiftBoxItem(R.drawable.meishi50,"美食--芝麻丸","¥49.9"));
-        itemData.add(new GiftBoxItem(R.drawable.meishi0188,"美食--蛋糕","¥188"));
+        itemData.add(new GiftBoxItem(R.drawable.meishi188,"数码蛋糕","188"));
+        itemData.add(new GiftBoxItem(R.drawable.meishi50,"美食--芝麻丸","49.9"));
+        itemData.add(new GiftBoxItem(R.drawable.meishi0188,"美食--蛋糕","188"));
 
-        itemData.add(new GiftBoxItem(R.drawable.shuma3600,"数码--相机","¥3600"));
-        itemData.add(new GiftBoxItem(R.drawable.shuma999,"数码--录音笔","¥999"));
-        itemData.add(new GiftBoxItem(R.drawable.shuma28,"数码--水晶球","¥28"));
-        itemData.add(new GiftBoxItem(R.drawable.shuma80,"数码--小电扇","¥79.9"));
-        itemData.add(new GiftBoxItem(R.drawable.shuma499,"数码--手表","¥499"));
+        itemData.add(new GiftBoxItem(R.drawable.shuma3600,"数码--相机","3600"));
+        itemData.add(new GiftBoxItem(R.drawable.shuma999,"数码--录音笔","999"));
+        itemData.add(new GiftBoxItem(R.drawable.shuma28,"数码--水晶球","28"));
+        itemData.add(new GiftBoxItem(R.drawable.shuma80,"数码--小电扇","79.9"));
+        itemData.add(new GiftBoxItem(R.drawable.shuma499,"数码--手表","499"));
 
-        itemData.add(new GiftBoxItem(R.drawable.fushi1,"礼盒5","¥1"));
-        itemData.add(new GiftBoxItem(R.drawable.fushi45,"礼盒6","¥45"));
-        itemData.add(new GiftBoxItem(R.drawable.fushi55,"礼盒6","¥55"));
-        itemData.add(new GiftBoxItem(R.drawable.fushi65,"礼盒6","¥65"));
-        itemData.add(new GiftBoxItem(R.drawable.fushi1299,"礼盒6","¥1299"));
+        itemData.add(new GiftBoxItem(R.drawable.fushi1,"礼盒5","1"));
+        itemData.add(new GiftBoxItem(R.drawable.fushi45,"礼盒6","45"));
+        itemData.add(new GiftBoxItem(R.drawable.fushi55,"礼盒6","55"));
+        itemData.add(new GiftBoxItem(R.drawable.fushi65,"礼盒6","65"));
+        itemData.add(new GiftBoxItem(R.drawable.fushi1299,"礼盒6","1299"));
 
-        itemData.add(new GiftBoxItem(R.drawable.liwu120,"礼盒7","¥120"));
-        itemData.add(new GiftBoxItem(R.drawable.liwu186,"礼盒8","¥186"));
-        itemData.add(new GiftBoxItem(R.drawable.liwu220,"礼盒7","¥220"));
-        itemData.add(new GiftBoxItem(R.drawable.liwu223,"礼盒8","¥223"));
-        itemData.add(new GiftBoxItem(R.drawable.liwu268,"礼盒7","¥268"));
+        itemData.add(new GiftBoxItem(R.drawable.liwu120,"礼盒7","120"));
+        itemData.add(new GiftBoxItem(R.drawable.liwu186,"礼盒8","186"));
+        itemData.add(new GiftBoxItem(R.drawable.liwu220,"礼盒7","220"));
+        itemData.add(new GiftBoxItem(R.drawable.liwu223,"礼盒8","223"));
+        itemData.add(new GiftBoxItem(R.drawable.liwu268,"礼盒7","268"));
 
-        itemData.add(new GiftBoxItem(R.drawable.xiangshui98,"礼盒8","¥98"));
-        itemData.add(new GiftBoxItem(R.drawable.xiangshui148,"礼盒8","¥148"));
-        itemData.add(new GiftBoxItem(R.drawable.xiangshui1189,"礼盒8","¥1189"));
+        itemData.add(new GiftBoxItem(R.drawable.xiangshui98,"礼盒8","98"));
+        itemData.add(new GiftBoxItem(R.drawable.xiangshui148,"礼盒8","148"));
+        itemData.add(new GiftBoxItem(R.drawable.xiangshui1189,"礼盒8","1189"));
 
         itemAdapter = new GiftBoxAdapter<GiftBoxItem>(itemData, R.layout.gift_box_item) {
             @Override
             public void bindView(ViewHolder holder, GiftBoxItem obj) {
                 holder.setImageResource(R.id.box_image, obj.getImageId());
                 holder.setText(R.id.box_name, obj.getBoxName());
-                holder.setText(R.id.box_price,obj.getBoxPrice());
+                holder.setText(R.id.box_price,"￥" + obj.getBoxPrice());
             }
         };
 

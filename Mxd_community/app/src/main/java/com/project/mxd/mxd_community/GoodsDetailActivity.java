@@ -16,13 +16,28 @@ import android.widget.TextView;
 
 public class GoodsDetailActivity extends AppCompatActivity {
     private ImageView backImage;
+    private ImageView goodsImage;
+    private TextView goodsName;
+    private TextView goodsPrice;
     private TextView buyBtn;
+    private int imageId;
+    private String singlePrice;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.goods_detail);
         backImage = (ImageView)findViewById(R.id.top_bar_back);
+        goodsImage = (ImageView)findViewById(R.id.goodsImage);
+        goodsName = (TextView) findViewById(R.id.goodsName);
+        goodsPrice = (TextView) findViewById(R.id.goodsPrice);
         buyBtn = (TextView) findViewById(R.id.buyBtn);
+
+        Intent getIntent = getIntent();
+        imageId = getIntent.getIntExtra("imageId",R.mipmap.ic_launcher);
+        singlePrice = getIntent.getStringExtra("price");
+        goodsImage.setImageResource(imageId);
+        goodsName.setText(getIntent.getStringExtra("name"));
+        goodsPrice.setText("￥" + singlePrice);
         backImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,6 +49,9 @@ public class GoodsDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (getPreference()) {
                     Intent intent = new Intent();
+                    intent.putExtra("imageId",imageId);
+                    intent.putExtra("name",goodsName.getText());
+                    intent.putExtra("price",singlePrice);
                     intent.setClass(GoodsDetailActivity.this, EditOrderActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);

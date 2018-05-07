@@ -134,7 +134,6 @@
                     android:layout_toRightOf="@+id/goodsImage"
                     android:layout_alignTop="@+id/goodsImage"
                     android:layout_marginLeft="15dp"
-                    android:text="礼盒1--*******************"
                     android:textColor="#444"
                     android:textSize="15sp"/>
                 <TextView
@@ -154,7 +153,6 @@
                     android:layout_alignLeft="@+id/goodsDesc"
                     android:layout_below="@+id/goodsDesc"
                     android:layout_marginTop="3dp"
-                    android:text="￥299"
                     android:textColor="#ff3939"
                     android:textSize="15sp"/>
                 <View
@@ -273,7 +271,6 @@
             android:paddingRight="15dp"
             android:layout_weight="2"
             android:gravity="center"
-            android:text="￥299.00元"
             android:textColor="#fd8627"
             android:textSize="17sp"/>
         <TextView

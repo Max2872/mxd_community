@@ -40,6 +40,7 @@ public class AddressManagerActivity extends AppCompatActivity {
         itemData.add(new AddressManagerItem("马晓东","18217752872","上海上海市浦东新区张江高科技园区祥科路58号炬芯研发大楼A栋8楼"));
         itemData.add(new AddressManagerItem("李莉","13817821581","上海上海市松江区方松街道文诚路888弄（珠江新城）19号1502室"));
         itemData.add(new AddressManagerItem("马晓东","18217752872","上海上海市浦东新区曹路镇上海第二工业大学河东男寝"));
+        itemData.add(new AddressManagerItem("马晓东","18217752872","上海上海市浦东新区曹路镇上海第二工业大学河东男寝"));
         adapter = new AddressManagerAdapter((LinkedList<AddressManagerItem>)itemData,context);
         list.setAdapter(adapter);
 
