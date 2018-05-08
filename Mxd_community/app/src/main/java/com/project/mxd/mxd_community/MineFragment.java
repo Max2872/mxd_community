@@ -85,7 +85,7 @@ public class MineFragment extends Fragment {
                     tempNum += 500;
                     customToast("成功充值500元，零钱余额" + tempNum + "元",2);
                     walletString = tempNum + "";
-                    walletContent.setText(tempNum.toString() + "元");
+                    walletContent.setText(String.format("%.2f", tempNum) + "元");
                 }else  {
                     walletString = "0";
                     walletContent.setText(walletString + "元");

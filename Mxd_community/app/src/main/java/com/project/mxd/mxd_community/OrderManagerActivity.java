@@ -50,7 +50,7 @@ public class OrderManagerActivity extends AppCompatActivity {
         Cursor cursor = db.query("orderInfo",null,null,null,null,null,null);
         try {
             if (cursor != null && cursor.getCount() > 0) {
-                if (cursor.moveToFirst()) {
+                while(cursor.moveToNext()) {
                     goodsImageId = cursor.getString(cursor.getColumnIndex("goodsImageId"));
                     goodsName = cursor.getString(cursor.getColumnIndex("goodsName"));
                     goodsPrice = cursor.getString(cursor.getColumnIndex("goodsPrice"));
@@ -66,6 +66,7 @@ public class OrderManagerActivity extends AppCompatActivity {
         }finally {
             cursor.close();
         }
+        db.close();
 
 
         adapter = new OrderManagerAdapter((LinkedList<OrderManagerItem>)itemData,context);

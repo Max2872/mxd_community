@@ -169,7 +169,7 @@ public class EditOrderActivity extends AppCompatActivity {
         value2.put("recieverName",recieverName.getText().toString());
         value2.put("recieverPhone",recieverPhone.getText().toString());
         value2.put("recieverAddress",recieverAddress.getText().toString());
-        db.insert("orderInfo",null,value2);
+        db.insert("orderInfo","goodsImageId",value2);
         db.close();
         Intent intent = new Intent();
         intent.setClass(EditOrderActivity.this, OrderResultActivity.class);
