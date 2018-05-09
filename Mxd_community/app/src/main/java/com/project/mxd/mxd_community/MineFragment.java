@@ -39,6 +39,7 @@ public class MineFragment extends Fragment {
     private TextView logoutBtn;
 
     private String walletString = "0";
+    private String phoneNum;
 
     @Nullable
     @Override
@@ -140,18 +141,23 @@ public class MineFragment extends Fragment {
     @Override
     public void onPause() {
         if (shouldLogin) {
-            SQLiteDatabase db = communityOpenHelper.getWritableDatabase();
-            ContentValues value = new ContentValues();
-            value.put("wallet",walletString);
-            db.update("userInfo",value,null,null);
-            db.close();
+            saveWallet();
         }
         super.onPause();
+    }
+
+    private void saveWallet() {
+        SQLiteDatabase db = communityOpenHelper.getWritableDatabase();
+        ContentValues value = new ContentValues();
+        value.put("wallet",walletString);
+        db.update("userInfo",value,"phoneNum=?",new String[] {phoneNum});
+        db.close();
     }
 
     private void initData() {
         SharedPreferences preferences = getActivity().getSharedPreferences("userPreference", Context.MODE_PRIVATE);
         shouldLogin = preferences.getBoolean("shouldLogin",false);
+        phoneNum = preferences.getString("phoneNum","");
         if (!shouldLogin) {
             accountDesc.setVisibility(View.GONE);
             accountContent.setVisibility(View.GONE);
@@ -166,20 +172,25 @@ public class MineFragment extends Fragment {
             logoutBtn.setVisibility(View.VISIBLE);
             loginBtn.setVisibility(View.GONE);
         }
+        accountContent.setText(phoneNum);
         SQLiteDatabase db = communityOpenHelper.getReadableDatabase();
         Cursor cursor = db.query("userInfo",null,null,null,null,null,null);
+        String dbPhone;
         try {
             if (cursor != null && cursor.getCount() > 0) {
-                if (cursor.moveToFirst()) {
-                    accountContent.setText(cursor.getString(cursor.getColumnIndex("phoneNum")));
-                    walletString = cursor.getString(cursor.getColumnIndex("wallet"));
-                    if (walletString == null) {
-                        walletString = "0";
+                while (cursor.moveToNext()) {
+                    dbPhone = cursor.getString(cursor.getColumnIndex("phoneNum"));
+                    if (dbPhone.equals(phoneNum)) {
+                        walletString = cursor.getString(cursor.getColumnIndex("wallet"));
+                        break;
                     }
-                    walletContent.setText(walletString + "元");
                 }
+                if (walletString == null) {
+                    walletString = "0";
+                }
+                walletContent.setText(walletString + "元");
             }else  {
-
+                walletContent.setText(walletString + "元");
             }
         }catch (Exception e) {
 
@@ -197,13 +208,13 @@ public class MineFragment extends Fragment {
         startActivity(intent);
     }
     private void clearPreference() {
-        SQLiteDatabase db = communityOpenHelper.getWritableDatabase();
-        db.delete("userInfo",null,null);
-        db.close();
         SharedPreferences preference = getActivity().getSharedPreferences("userPreference", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preference.edit();
-        editor.clear();
+        editor.putBoolean("shouldLogin",false);
         editor.commit();
+        this.saveWallet();
+        walletString = "0";
+        walletContent.setText(walletString + "元");
     }
     private void customToast(String string,int showTime) {
         LayoutInflater inflater = getActivity().getLayoutInflater();

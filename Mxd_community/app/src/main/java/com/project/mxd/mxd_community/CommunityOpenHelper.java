@@ -15,14 +15,15 @@ public class CommunityOpenHelper extends SQLiteOpenHelper {
     //数据库第一次创建时被调用
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE userInfo(userId INTEGER PRIMARY KEY AUTOINCREMENT,phoneNum VARCHAR(15),passward VARCHAR(20),wallet VARCHAR(20))");
+        db.execSQL("CREATE TABLE userInfo(userId INTEGER PRIMARY KEY AUTOINCREMENT,phoneNum text,passward VARCHAR(20),wallet VARCHAR(20))");
+
         db.execSQL("CREATE TABLE orderInfo(userId INTEGER PRIMARY KEY AUTOINCREMENT,phoneNum text,goodsImageId text,goodsName text" +
                 ",goodsPrice VARCHAR(20)," + "recieverName text,recieverPhone VARCHAR(20),recieverAddress text)");
         db.execSQL("CREATE TABLE cartGoodsInfo(userId INTEGER PRIMARY KEY AUTOINCREMENT,phoneNum text,goodsImageId text,goodsName text" +
                 ",goodsPrice VARCHAR(20)," + "goodNum VARCHAR(20))");
         db.execSQL("CREATE TABLE addressInfo(userId INTEGER PRIMARY KEY AUTOINCREMENT,phoneNum text,recieverName text,recieverPhone VARCHAR(20)" +
                 ",recieverAddress text)");
-        db.execSQL("CREATE TABLE addressInfo(userId INTEGER PRIMARY KEY AUTOINCREMENT,phoneNum text,remindTime text,remindAdranceDay VARCHAR(10)" +
+        db.execSQL("CREATE TABLE remindInfo(userId INTEGER PRIMARY KEY AUTOINCREMENT,phoneNum text,remindTime text,remindAdranceDay VARCHAR(10)" +
                 ",remark text)");
     }
 

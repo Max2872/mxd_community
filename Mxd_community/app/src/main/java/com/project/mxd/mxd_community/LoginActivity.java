@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -22,6 +21,8 @@ public class LoginActivity extends AppCompatActivity {
     private CommunityOpenHelper communityOpenHelper;
     private EditText phoneEdit;
     private EditText passwardEdit;
+    private boolean isLoginMode = false;
+    private boolean couldLogin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login);
         loginInstance = this;
         communityOpenHelper = new CommunityOpenHelper(LoginActivity.this,"community.db",null,1);
-        if (hasUserInfo()) {
+        SharedPreferences preference = LoginActivity.this.getSharedPreferences("userPreference", Context.MODE_PRIVATE);
+        boolean shouldLogin = preference.getBoolean("shouldLogin",false);
+        if (shouldLogin) {
             Intent intent = new Intent();
             intent.setClass(LoginActivity.this, MainTabbarActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -56,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         ignoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                savePreference(false);
+                savePreference(false,null);
                 if (hasLogin) {
                     finish();
                     return;
@@ -75,9 +78,11 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginDesc.getText().toString().contains("登录")) {
                     loginDesc.setText("没有账号？去注册");
                     loginBtn.setText("登录");
+                    isLoginMode = true;
                 }else {
                     loginDesc.setText("已有账号？去登录");
                     loginBtn.setText("注册");
+                    isLoginMode = false;
                 }
             }
         });
@@ -106,16 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 saveUserInfo(phoneNum,passward);
-                savePreference(true);
-                if (hasLogin) {
-                    finish();
-                    return;
-                }
-                Intent intent = new Intent();
-                intent.setClass(LoginActivity.this, MainTabbarActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                startActivity(intent);
+
             }
         });
     }
@@ -125,49 +121,83 @@ public class LoginActivity extends AppCompatActivity {
         toast.show();
     }
     private void saveUserInfo(String phoneNum,String passward) {
+        boolean shouldRegister = true;
         SQLiteDatabase db = communityOpenHelper.getWritableDatabase();
         Cursor cursor = db.query("userInfo",null,null,null,null,null,null);
-        ContentValues value = new ContentValues();
-        value.put("phoneNum",phoneNum);
-        value.put("passward",passward);
-        Log.i("phoneNum",phoneNum);
         try {
             if (cursor != null && cursor.getCount() > 0) {
-                db.update("userInfo",value,null,null);
-            }else  {
-                db.insert("userInfo",null,value);
-            }
-        }catch (Exception e) {
-
-        }finally {
-            cursor.close();
-        }
-        db.close();
-    }
-    private boolean hasUserInfo() {
-        boolean hasData = false;
-        SQLiteDatabase db = communityOpenHelper.getReadableDatabase();
-        Cursor cursor = db.query("userInfo",null,null,null,null,null,null);
-        try {
-            if (cursor != null && cursor.getCount() > 0) {
-                if (cursor.moveToFirst()) {
-                    hasData = true;
+                while(cursor.moveToNext()) {
+                    if (isLoginMode) {
+                        //登录状态则校验账号密码是否存在
+                        if (phoneNum.equals(cursor.getString(cursor.getColumnIndex("phoneNum"))) && passward.equals(cursor.getString(cursor.getColumnIndex("passward")))) {
+                            couldLogin = true;
+                            break;
+                        }else if (phoneNum.equals(cursor.getString(cursor.getColumnIndex("phoneNum")))) {
+                            shouldRegister = false;
+                        }
+                    }else {
+                        //注册状态则插入到数据库中
+                        if (phoneNum.equals(cursor.getString(cursor.getColumnIndex("phoneNum")))) {
+                            shouldRegister = false;
+                        }
+                    }
                 }
-            }else  {
 
+                if (isLoginMode) {
+                   if (!shouldRegister) {
+                       customToast("密码输入错误",2);
+                   }else if (shouldRegister && !couldLogin) {
+                       customToast("这是个新账号，请注册",2);
+                   }
+                }else {
+                    if (!shouldRegister) {
+                        customToast("该账号已存在，请登录",2);
+
+                    }else {
+                        cursor.close();
+                        ContentValues value1 = new ContentValues();
+                        value1.put("phoneNum",phoneNum);
+                        value1.put("passward",passward);
+                        value1.put("wallet",0);
+                        db.insert("userInfo","phoneNum",value1);
+                        couldLogin = true;
+                    }
+                }
+
+            }else  {
+                cursor.close();
+                //数据库没数据的情况下，不论登录、注册
+                ContentValues value = new ContentValues();
+                value.put("phoneNum",phoneNum);
+                value.put("passward",passward);
+                value.put("wallet",0);
+                db.insert("userInfo","phoneNum",value);
             }
         }catch (Exception e) {
 
         }finally {
-            cursor.close();
+            db.close();
+            if (!couldLogin) {
+                return;
+            }
+            savePreference(true,phoneNum);
+            if (hasLogin) {
+                finish();
+                return;
+            }
+            Intent intent = new Intent();
+            intent.setClass(LoginActivity.this, MainTabbarActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+            startActivity(intent);
         }
-        db.close();
-        return hasData;
     }
-    private void savePreference(boolean shouldLogin) {
-        SharedPreferences preference = LoginActivity.this.getSharedPreferences("userPreference", Context.MODE_PRIVATE);
+
+    private void savePreference(boolean shouldLogin,String phoneNum) {
+        SharedPreferences preference = getSharedPreferences("userPreference", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preference.edit();
         editor.putBoolean("shouldLogin",shouldLogin);
+        editor.putString("phoneNum",phoneNum);
         editor.commit();
     }
 }

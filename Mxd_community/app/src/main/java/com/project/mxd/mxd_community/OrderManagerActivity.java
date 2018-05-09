@@ -1,6 +1,7 @@
 package com.project.mxd.mxd_community;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -45,20 +46,24 @@ public class OrderManagerActivity extends AppCompatActivity {
         String recieverName;
         String recieverPhone;
         String recieverAddress;
+        SharedPreferences preferences = this.getSharedPreferences("userPreference", Context.MODE_PRIVATE);
+        String phoneNum = preferences.getString("phoneNum","");
         CommunityOpenHelper communityOpenHelper = new CommunityOpenHelper(this,"community.db",null,1);
         SQLiteDatabase db = communityOpenHelper.getReadableDatabase();
         Cursor cursor = db.query("orderInfo",null,null,null,null,null,null);
         try {
             if (cursor != null && cursor.getCount() > 0) {
                 while(cursor.moveToNext()) {
-                    goodsImageId = cursor.getString(cursor.getColumnIndex("goodsImageId"));
-                    goodsName = cursor.getString(cursor.getColumnIndex("goodsName"));
-                    goodsPrice = cursor.getString(cursor.getColumnIndex("goodsPrice"));
+                    if (cursor.getString(cursor.getColumnIndex("phoneNum")).equals(phoneNum)) {
+                        goodsImageId = cursor.getString(cursor.getColumnIndex("goodsImageId"));
+                        goodsName = cursor.getString(cursor.getColumnIndex("goodsName"));
+                        goodsPrice = cursor.getString(cursor.getColumnIndex("goodsPrice"));
 
-                    recieverName = cursor.getString(cursor.getColumnIndex("recieverName"));
-                    recieverPhone = cursor.getString(cursor.getColumnIndex("recieverPhone"));
-                    recieverAddress = cursor.getString(cursor.getColumnIndex("recieverAddress"));
-                    itemData.add(new OrderManagerItem(goodsImageId,goodsName,goodsPrice,recieverName,recieverPhone,recieverAddress));
+                        recieverName = cursor.getString(cursor.getColumnIndex("recieverName"));
+                        recieverPhone = cursor.getString(cursor.getColumnIndex("recieverPhone"));
+                        recieverAddress = cursor.getString(cursor.getColumnIndex("recieverAddress"));
+                        itemData.add(new OrderManagerItem(goodsImageId,goodsName,goodsPrice,recieverName,recieverPhone,recieverAddress));
+                    }
                 }
             }
         }catch (Exception e) {

@@ -1,7 +1,9 @@
 package com.project.mxd.mxd_community;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 public class EditOrderActivity extends AppCompatActivity {
     private CommunityOpenHelper communityOpenHelper;
     private String walletString = "0";
+    private String phoneNum;
     private ImageView backImage;
     private RelativeLayout recieverInfo;
 
@@ -49,6 +52,8 @@ public class EditOrderActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_order);
+        SharedPreferences preferences = this.getSharedPreferences("userPreference", Context.MODE_PRIVATE);
+        phoneNum = preferences.getString("phoneNum","");
         communityOpenHelper = new CommunityOpenHelper(this,"community.db",null,1);
         backImage = (ImageView)findViewById(R.id.top_bar_back);
         recieverInfo = (RelativeLayout) findViewById(R.id.recieverInfo);
@@ -136,13 +141,18 @@ public class EditOrderActivity extends AppCompatActivity {
     private void ensurePay() {
         SQLiteDatabase db = communityOpenHelper.getReadableDatabase();
         Cursor cursor = db.query("userInfo",null,null,null,null,null,null);
+        String dbPhone;
         try {
             if (cursor != null && cursor.getCount() > 0) {
-                if (cursor.moveToFirst()) {
-                    walletString = cursor.getString(cursor.getColumnIndex("wallet"));
-                    if (walletString == null) {
-                        walletString = "0";
+                while (cursor.moveToNext()) {
+                    dbPhone = cursor.getString(cursor.getColumnIndex("phoneNum"));
+                    if (dbPhone.equals(phoneNum)) {
+                        walletString = cursor.getString(cursor.getColumnIndex("wallet"));
+                        break;
                     }
+                }
+                if (walletString == null) {
+                    walletString = "0";
                 }
             }
         }catch (Exception e) {
@@ -160,9 +170,10 @@ public class EditOrderActivity extends AppCompatActivity {
         }
         ContentValues value = new ContentValues();
         value.put("wallet",originWallet + "");
-        db.update("userInfo",value,null,null);
+        db.update("userInfo",value,"phoneNum=?",new String[] {phoneNum});
 
         ContentValues value2 = new ContentValues();
+        value2.put("phoneNum",phoneNum);
         value2.put("goodsImageId",goodsImageId + "");
         value2.put("goodsName",goodsNameString + "");
         value2.put("goodsPrice",submitPrice + "");
