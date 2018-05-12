@@ -1,8 +1,10 @@
 package com.project.mxd.mxd_community;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +22,13 @@ import android.widget.Toast;
 
 public class CustomGoodsDetailActivity extends AppCompatActivity {
     private ImageView backImage;
+    private ImageView goodsImage;
+    private TextView goodsName;
+    private TextView goodsPrice;
+    private int imageId;
+    private String singlePrice;
+    private String cartGoodsName;
+
     private TextView cartBtn;
     private TextView cartHint;
     @Override
@@ -27,6 +36,22 @@ public class CustomGoodsDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.custom_goods_detail);
         backImage = (ImageView)findViewById(R.id.top_bar_back);
+        goodsImage = (ImageView)findViewById(R.id.goodsImage);
+        goodsName = (TextView) findViewById(R.id.goodsName);
+        goodsPrice = (TextView) findViewById(R.id.goodsPrice);
+
+        SharedPreferences preferences = this.getSharedPreferences("userPreference", Context.MODE_PRIVATE);
+        final String phoneNum = preferences.getString("phoneNum","");
+        CommunityOpenHelper communityOpenHelper = new CommunityOpenHelper(this,"community.db",null,1);
+        final SQLiteDatabase db = communityOpenHelper.getWritableDatabase();
+
+        Intent getIntent = getIntent();
+        imageId = getIntent.getIntExtra("imageId",R.mipmap.ic_launcher);
+        singlePrice = getIntent.getStringExtra("price");
+        cartGoodsName = getIntent.getStringExtra("name");
+        goodsImage.setImageResource(imageId);
+        goodsName.setText(cartGoodsName);
+        goodsPrice.setText("￥" + singlePrice);
         cartBtn = (TextView) findViewById(R.id.cartBtn);
         cartHint = (TextView) findViewById(R.id.cartHint);
         backImage.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +64,13 @@ public class CustomGoodsDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (getPreference()) {
+                    ContentValues value = new ContentValues();
+                    value.put("phoneNum",phoneNum);
+                    value.put("goodsImageId",imageId);
+                    value.put("goodsName",cartGoodsName);
+                    value.put("goodsPrice",singlePrice);
+                    value.put("goodNum",1);
+                    db.insert("cartGoodsInfo","phoneNum",value);
                     Intent intent = new Intent();
                     intent.setClass(CustomGoodsDetailActivity.this, MainTabbarActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);

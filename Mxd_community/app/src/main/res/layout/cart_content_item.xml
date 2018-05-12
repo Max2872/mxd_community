@@ -16,8 +16,7 @@
         android:layout_height="70dp"
         android:layout_toRightOf="@+id/cartSelectImage"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:background="#0ff"/>
+        android:layout_marginTop="10dp" />
     <TextView
         android:id="@+id/goodsName"
         android:layout_width="match_parent"
@@ -26,7 +25,6 @@
         android:layout_toRightOf="@+id/goodsImage"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:text="商品名：*************"
         android:textColor="#444"
         android:textSize="15sp"/>
     <TextView
@@ -36,7 +34,6 @@
         android:layout_below="@+id/goodsName"
         android:layout_alignLeft="@+id/goodsName"
         android:layout_marginTop="8dp"
-        android:text="价格：￥299元"
         android:textColor="#444"
         android:textSize="15sp"/>
     <ImageView
@@ -55,7 +52,6 @@
         android:layout_toRightOf="@+id/numDec"
         android:layout_marginTop="5dp"
         android:gravity="center"
-        android:text="1"
         android:textColor="#444"
         android:textSize="15sp"/>
     <ImageView

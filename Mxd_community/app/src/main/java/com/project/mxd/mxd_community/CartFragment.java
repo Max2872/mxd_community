@@ -2,6 +2,9 @@ package com.project.mxd.mxd_community;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -36,15 +39,48 @@ public class CartFragment extends Fragment {
         drawable.setBounds(0,0,70,70);
         orderSelectAll.setCompoundDrawables(drawable,null,null,null);
 
-        itemData = new LinkedList<CartGoodsItem>();
-        itemData.add(new CartGoodsItem("礼盒1","￥299.0元"));
-        itemData.add(new CartGoodsItem("礼盒2","￥199.0元"));
-        itemData.add(new CartGoodsItem("礼盒3","￥99.0元"));
-        itemData.add(new CartGoodsItem("礼盒4","￥89.0元"));
-        itemData.add(new CartGoodsItem("礼盒5","￥69.0元"));
-        itemData.add(new CartGoodsItem("礼盒6","￥99.0元"));
-        adapter = new CartGoodsAdapter((LinkedList<CartGoodsItem>)itemData,context);
-        list.setAdapter(adapter);
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
+    }
+
+    private void initData() {
+        itemData = new LinkedList();
+        SharedPreferences preferences = getActivity().getSharedPreferences("userPreference", Context.MODE_PRIVATE);
+        String phoneNum = preferences.getString("phoneNum","");
+        boolean shouldLogin = preferences.getBoolean("shouldLogin",false);
+        CommunityOpenHelper communityOpenHelper = new CommunityOpenHelper(getActivity(),"community.db",null,1);
+        SQLiteDatabase db = communityOpenHelper.getReadableDatabase();
+        Cursor cursor = db.query("cartGoodsInfo",null,null,null,null,null,null);
+
+        String goodsImageId;
+        String goodsName;
+        String goodsPrice;
+        String goodNum;
+        try {
+            if (cursor != null && cursor.getCount() > 0) {
+                while(cursor.moveToNext()) {
+                    if (cursor.getString(cursor.getColumnIndex("phoneNum")).equals(phoneNum)) {
+                        goodsImageId = cursor.getString(cursor.getColumnIndex("goodsImageId"));
+                        goodsName = cursor.getString(cursor.getColumnIndex("goodsName"));
+                        goodsPrice = cursor.getString(cursor.getColumnIndex("goodsPrice"));
+                        goodNum = cursor.getString(cursor.getColumnIndex("goodNum"));
+                        itemData.add(new CartGoodsItem(goodsImageId,goodsName,goodsPrice,goodNum));
+                    }
+                }
+            }
+        }catch (Exception e) {
+
+        }finally {
+            cursor.close();
+        }
+        db.close();
+        adapter = new CartGoodsAdapter((LinkedList<CartGoodsItem>)itemData,context);
+        list.setAdapter(adapter);
+    }
 }
+
