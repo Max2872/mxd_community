@@ -18,6 +18,7 @@ import java.util.LinkedList;
 public class OrderManagerAdapter extends BaseAdapter {
     private LinkedList<OrderManagerItem> itemData;
     private Context itemContext;
+    private int index;
 
     public OrderManagerAdapter(LinkedList<OrderManagerItem>itemData,Context itemContext) {
         this.itemData = itemData;
@@ -51,7 +52,7 @@ public class OrderManagerAdapter extends BaseAdapter {
         goods_name.setText(itemData.get(position).getGoodsName());
         price_num.setText(itemData.get(position).getGoodsPrice());
         receiver_name.setText(itemData.get(position).getRecieverName());
-
+        index = position;
         logistics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +64,13 @@ public class OrderManagerAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(itemContext,OrderDetailActivity.class);
+                intent.putExtra("goodsImageId",itemData.get(index).getGoodsImageId());
+                intent.putExtra("goodsName",itemData.get(index).getGoodsName());
+                intent.putExtra("goodsPrice",itemData.get(index).getGoodsPrice());
+
+                intent.putExtra("recieverName",itemData.get(index).getRecieverName());
+                intent.putExtra("recieverPhone",itemData.get(index).getRecieverPhone());
+                intent.putExtra("recieverAddress",itemData.get(index).getRecieverAddress());
                 itemContext.startActivity(intent);
             }
         });

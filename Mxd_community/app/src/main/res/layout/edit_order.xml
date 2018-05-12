@@ -125,8 +125,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/order_goods_bg"/>
+                    android:layout_marginTop="20dp" />
                 <TextView
                     android:id="@+id/goodsName"
                     android:layout_width="wrap_content"

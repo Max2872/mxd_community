@@ -25,4 +25,57 @@
             android:textColor="@color/white"
             android:text="订单物流"/>
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_bar"
+        android:layout_marginTop="30dp">
+        <TextView
+            android:id="@+id/logistic_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="快递公司：  顺丰速递"
+            android:textSize="19sp"
+            android:textColor="#333"/>
+        <TextView
+            android:id="@+id/logistic_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logistic_company"
+            android:layout_alignLeft="@+id/logistic_company"
+            android:layout_marginTop="30dp"
+            android:text="单号：493066805933"
+            android:textSize="19sp"
+            android:textColor="#333"/>
+        <TextView
+            android:id="@+id/logistic_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logistic_num"
+            android:layout_alignLeft="@+id/logistic_num"
+            android:layout_marginTop="30dp"
+            android:text="详情:"
+            android:textSize="19sp"
+            android:textColor="#333"/>
+        <TextView
+            android:id="@+id/detail_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logistic_detail"
+            android:layout_alignLeft="@+id/logistic_detail"
+            android:layout_marginTop="15dp"
+            android:text="2018.05.02   15:08\n·已出库"
+            android:textSize="14sp"
+            android:textColor="#333"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/detail_1"
+            android:layout_alignLeft="@+id/detail_1"
+            android:layout_marginTop="15dp"
+            android:text="2018.05.02   19:53\n·到达上海集散中心"
+            android:textSize="14sp"
+            android:textColor="#333"/>
+    </RelativeLayout>
 </RelativeLayout>
