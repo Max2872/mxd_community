@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,10 @@ public class LoginActivity extends AppCompatActivity {
     private CommunityOpenHelper communityOpenHelper;
     private EditText phoneEdit;
     private EditText passwardEdit;
+
+    private TextView checkDesc;
+    private EditText checkEdit;
+    private RelativeLayout checkLayout;
     private boolean isLoginMode = false;
     private boolean couldLogin = false;
 
@@ -49,11 +54,21 @@ public class LoginActivity extends AppCompatActivity {
         final TextView loginDesc = (TextView)findViewById(R.id.loginDesc);
         final TextView loginBtn = (TextView)findViewById(R.id.login_btn);
 
+        checkDesc = (TextView) findViewById(R.id.checkDesc);
+        checkEdit = (EditText)findViewById(R.id.checkEdit);
+        checkLayout = (RelativeLayout)findViewById(R.id.checkLayout);
         phoneEdit = (EditText)findViewById(R.id.phoneEdit);
         passwardEdit = (EditText)findViewById(R.id.passwardEdit);
         //文本下划线
         ignoreBtn.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
         loginDesc.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+
+        checkDesc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkDesc.setText("0519");
+            }
+        });
 
         //忽略登录
         ignoreBtn.setOnClickListener(new View.OnClickListener() {
@@ -78,10 +93,14 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginDesc.getText().toString().contains("登录")) {
                     loginDesc.setText("没有账号？去注册");
                     loginBtn.setText("登录");
+                    checkLayout.setVisibility(View.GONE);
                     isLoginMode = true;
                 }else {
                     loginDesc.setText("已有账号？去登录");
                     loginBtn.setText("注册");
+                    checkLayout.setVisibility(View.VISIBLE);
+                    checkDesc.setText("验证码");
+                    checkEdit.setText("");
                     isLoginMode = false;
                 }
             }
@@ -109,6 +128,13 @@ public class LoginActivity extends AppCompatActivity {
                 } else if (passward.length() > 15) {
                     customToast("密码长度过长",2);
                     return;
+                }
+
+                if (!isLoginMode) {
+                    if (checkEdit.getText().toString() != "0519") {
+                        customToast("请输入有效的验证码",2);
+                        return;
+                    }
                 }
                 saveUserInfo(phoneNum,passward);
 

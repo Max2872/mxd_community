@@ -40,7 +40,7 @@ public class GiftFragment extends Fragment {
             public void onClick(View v) {
                 savePreference(true);
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), GiftBoxListActivity.class);
+                intent.setClass(getActivity(), GiftBoxSettingActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                 startActivity(intent);

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,7 @@ public class GiftBoxListActivity extends AppCompatActivity {
         setContentView(R.layout.gift_box_list);
         grid_item = (GridView) findViewById(R.id.grid_box);
         backImage = (ImageView) findViewById(R.id.top_bar_back);
+        TextView top_bar_text = (TextView)findViewById(R.id.top_bar_text);
         backImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +67,9 @@ public class GiftBoxListActivity extends AppCompatActivity {
         itemData.add(new GiftBoxItem(R.drawable.xiangshui1189,"礼盒8","1189"));
 
         filterGoods();
+        if (getPreference()) {
+            top_bar_text.setText("商品列表");
+        }
         itemAdapter = new GiftBoxAdapter<GiftBoxItem>(itemData, R.layout.gift_box_item) {
             @Override
             public void bindView(ViewHolder holder, GiftBoxItem obj) {
