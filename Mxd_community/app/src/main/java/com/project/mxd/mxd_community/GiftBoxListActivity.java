@@ -64,6 +64,7 @@ public class GiftBoxListActivity extends AppCompatActivity {
         itemData.add(new GiftBoxItem(R.drawable.xiangshui148,"礼盒8","148"));
         itemData.add(new GiftBoxItem(R.drawable.xiangshui1189,"礼盒8","1189"));
 
+        filterGoods();
         itemAdapter = new GiftBoxAdapter<GiftBoxItem>(itemData, R.layout.gift_box_item) {
             @Override
             public void bindView(ViewHolder holder, GiftBoxItem obj) {
@@ -95,6 +96,47 @@ public class GiftBoxListActivity extends AppCompatActivity {
         });
 
     }
+
+    private void filterGoods() {
+        Intent getIntent = getIntent();
+        String whoString = getIntent.getStringExtra("whoString");
+        String moneyString = getIntent.getStringExtra("moneyString");
+        String useString = getIntent.getStringExtra("useString");
+        String kindString = getIntent.getStringExtra("kindString");
+
+        Float minMoney;
+        Float maxMoney;
+        switch (moneyString) {
+            case "100元以内":
+                maxMoney = 100.0f;
+                minMoney = 0.0f;
+                break;
+            case "100元~500元":
+                maxMoney = 500f;
+                minMoney = 100f;
+                break;
+            case "500元~1000元":
+                maxMoney = 1000f;
+                minMoney = 500f;
+                break;
+            case "1000元以上":
+                maxMoney = 100000f;
+                minMoney = 1000f;
+                break;
+            default:
+                maxMoney = 100f;
+                minMoney = 0f;
+        }
+
+        ArrayList<GiftBoxItem> tempData = new ArrayList<>();
+        for (int i=0;i<itemData.size();i++) {
+           if (Float.parseFloat(itemData.get(i).getBoxPrice()) < maxMoney && Float.parseFloat(itemData.get(i).getBoxPrice()) > minMoney) {
+               tempData.add(itemData.get(i));
+            }
+        }
+        itemData = tempData;
+    }
+
     private boolean getPreference() {
         SharedPreferences preferences = this.getSharedPreferences("userPreference", Context.MODE_PRIVATE);
         boolean shouldTurnCustom = preferences.getBoolean("shouldTurnCustom",false);
