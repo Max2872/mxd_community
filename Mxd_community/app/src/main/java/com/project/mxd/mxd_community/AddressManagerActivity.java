@@ -1,5 +1,6 @@
 package com.project.mxd.mxd_community;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +28,8 @@ public class AddressManagerActivity extends AppCompatActivity {
     private ListView list;
     private TextView addNewAddress;
     private ImageView backImage;
+    private String phoneNum;
+    private CommunityOpenHelper communityOpenHelper;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,15 +54,39 @@ public class AddressManagerActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        SharedPreferences preferences = this.getSharedPreferences("userPreference", Context.MODE_PRIVATE);
+        phoneNum = preferences.getString("phoneNum","");
+        communityOpenHelper = new CommunityOpenHelper(this,"community.db",null,1);
+        SQLiteDatabase db = communityOpenHelper.getWritableDatabase();
+        db.delete("addressInfo",null,null);
+        ContentValues value = new ContentValues();
+        value.put("phoneNum",phoneNum);
+        value.put("recieverName","马晓东");
+        value.put("recieverPhone","18217752872");
+        value.put("recieverAddress","上海上海市浦东新区张江高科技园区祥科路58号炬芯研发大楼A栋8楼");
+        db.insert("addressInfo","phoneNum",value);
+
+        ContentValues value1 = new ContentValues();
+        value1.put("phoneNum",phoneNum);
+        value1.put("recieverName","李莉");
+        value1.put("recieverPhone","13817821581");
+        value1.put("recieverAddress","上海上海市松江区方松街道文诚路888弄（珠江新城）19号1502室");
+        db.insert("addressInfo","phoneNum",value1);
+        db.close();
 
         itemData = new LinkedList();
+        adapter = new AddressManagerAdapter((LinkedList<AddressManagerItem>)itemData,context);
+        list.setAdapter(adapter);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        itemData.clear();
         String recieverName;
         String recieverPhone;
         String recieverAddress;
-
-        SharedPreferences preferences = this.getSharedPreferences("userPreference", Context.MODE_PRIVATE);
-        String phoneNum = preferences.getString("phoneNum","");
-        CommunityOpenHelper communityOpenHelper = new CommunityOpenHelper(this,"community.db",null,1);
         SQLiteDatabase db = communityOpenHelper.getReadableDatabase();
         Cursor cursor = db.query("addressInfo",null,null,null,null,null,null);
         try {
@@ -79,12 +106,6 @@ public class AddressManagerActivity extends AppCompatActivity {
             cursor.close();
         }
         db.close();
-        itemData.add(new AddressManagerItem("马晓东","18217752872","上海上海市浦东新区张江高科技园区祥科路58号炬芯研发大楼A栋8楼"));
-        itemData.add(new AddressManagerItem("李莉","13817821581","上海上海市松江区方松街道文诚路888弄（珠江新城）19号1502室"));
-        itemData.add(new AddressManagerItem("马晓东","18217752872","上海上海市浦东新区曹路镇上海第二工业大学河东男寝"));
-        itemData.add(new AddressManagerItem("马晓东","18217752872","上海上海市浦东新区曹路镇上海第二工业大学河东男寝"));
-        adapter = new AddressManagerAdapter((LinkedList<AddressManagerItem>)itemData,context);
-        list.setAdapter(adapter);
-
+        adapter.notifyDataSetChanged();
     }
 }

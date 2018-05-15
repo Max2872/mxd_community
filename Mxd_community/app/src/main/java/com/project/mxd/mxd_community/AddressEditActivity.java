@@ -79,11 +79,15 @@ public class AddressEditActivity extends AppCompatActivity {
                 SQLiteDatabase db = communityOpenHelper.getWritableDatabase();
                 ContentValues value = new ContentValues();
                 value.put("phoneNum",phoneNum);
-                value.put("recieverName",reciever);
-                value.put("recieverPhone",phoneNumString);
-                value.put("recieverAddress",addressString);
-//                if ()
-                db.insert("addressInfo","phoneNum",value);
+                value.put("recieverName",recieverContent.getText().toString());
+                value.put("recieverPhone",phoneContent.getText().toString());
+                value.put("recieverAddress",detailContent.getText().toString());
+                if (reciever.length() > 0) {
+                    db.update("addressInfo",value,"phoneNum=? and recieverName=?",new String[] {phoneNum,reciever});
+                }else {
+                    db.insert("addressInfo","phoneNum",value);
+                }
+
                 db.close();
 
                 finish();
