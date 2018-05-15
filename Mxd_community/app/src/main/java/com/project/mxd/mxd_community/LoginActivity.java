@@ -187,6 +187,20 @@ public class LoginActivity extends AppCompatActivity {
                         value1.put("wallet",0);
                         db.insert("userInfo","phoneNum",value1);
                         couldLogin = true;
+
+                        ContentValues value2 = new ContentValues();
+                        value2.put("phoneNum",phoneNum);
+                        value2.put("recieverName","马晓东");
+                        value2.put("recieverPhone","18217752872");
+                        value2.put("recieverAddress","上海上海市浦东新区张江高科技园区祥科路58号炬芯研发大楼A栋8楼");
+                        db.insert("addressInfo","phoneNum",value2);
+
+                        ContentValues value3 = new ContentValues();
+                        value3.put("phoneNum",phoneNum);
+                        value3.put("recieverName","李莉");
+                        value3.put("recieverPhone","13817821581");
+                        value3.put("recieverAddress","上海上海市松江区方松街道文诚路888弄（珠江新城）19号1502室");
+                        db.insert("addressInfo","phoneNum",value3);
                     }
                 }
 
@@ -198,6 +212,20 @@ public class LoginActivity extends AppCompatActivity {
                 value.put("passward",passward);
                 value.put("wallet",0);
                 db.insert("userInfo","phoneNum",value);
+
+                ContentValues value2 = new ContentValues();
+                value2.put("phoneNum",phoneNum);
+                value2.put("recieverName","马晓东");
+                value2.put("recieverPhone","18217752872");
+                value2.put("recieverAddress","上海上海市浦东新区张江高科技园区祥科路58号炬芯研发大楼A栋8楼");
+                db.insert("addressInfo","phoneNum",value2);
+
+                ContentValues value3 = new ContentValues();
+                value3.put("phoneNum",phoneNum);
+                value3.put("recieverName","李莉");
+                value3.put("recieverPhone","13817821581");
+                value3.put("recieverAddress","上海上海市松江区方松街道文诚路888弄（珠江新城）19号1502室");
+                db.insert("addressInfo","phoneNum",value3);
             }
         }catch (Exception e) {
 

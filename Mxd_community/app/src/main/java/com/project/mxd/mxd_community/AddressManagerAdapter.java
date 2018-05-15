@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.view.View.OnClickListener;
 
 import java.util.LinkedList;
 
@@ -16,14 +17,22 @@ import java.util.LinkedList;
  * Created by mao on 2018/4/27.
  */
 
-public class AddressManagerAdapter extends BaseAdapter {
+public class AddressManagerAdapter extends BaseAdapter implements OnClickListener {
     private LinkedList<AddressManagerItem> itemData;
     private Context itemContext;
     private int selectedIndex = 0;
+    private MyClickListener mListener;
 
-    public AddressManagerAdapter(LinkedList<AddressManagerItem>itemData,Context itemContext) {
+    //自定义接口，用于回调按钮点击事件到Activity
+    public interface MyClickListener{
+        public void clickListener(View v);
+    }
+
+
+    public AddressManagerAdapter(LinkedList<AddressManagerItem>itemData,Context itemContext,MyClickListener listener) {
         this.itemData = itemData;
         this.itemContext = itemContext;
+        this.mListener = listener;
     }
 
     @Override
@@ -50,6 +59,7 @@ public class AddressManagerAdapter extends BaseAdapter {
         final ImageView addressSelectedImage = (ImageView) convertView.findViewById(R.id.addressSelectedImage);
         ImageView addressEditImage = (ImageView) convertView.findViewById(R.id.addressEditImage);
         ImageView addressDeleteImage = (ImageView) convertView.findViewById(R.id.addressDeleteImage);
+        addressDeleteImage.setTag(position);
         reciever.setText(itemData.get(position).getReceiver());
         phoneNum.setText(itemData.get(position).getPhoneNum());
         address.setText(itemData.get(position).getAddress());
@@ -76,12 +86,13 @@ public class AddressManagerAdapter extends BaseAdapter {
                 itemContext.startActivity(intent);
             }
         });
-        addressDeleteImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        addressDeleteImage.setOnClickListener(this);
 
-            }
-        });
         return convertView;
+    }
+
+    @Override
+    public void onClick(View v) {
+        mListener.clickListener(v);
     }
 }
