@@ -48,7 +48,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="30dp"
         android:focusableInTouchMode="true"
-        android:inputType="textMultiLine"/>
+        android:inputType="text"/>
     <View
         android:id="@+id/recieverSeperate"
         android:layout_width="match_parent"
@@ -72,7 +72,7 @@
         android:background="@null"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/top_bar"
+        android:layout_below="@+id/recieverSeperate"
         android:layout_toRightOf="@+id/phoneDesc"
         android:paddingLeft="10dp"
         android:layout_alignParentRight="true"
@@ -106,9 +106,9 @@
         android:layout_alignLeft="@+id/detailDesc"
         android:paddingLeft="10dp"
         android:layout_alignParentRight="true"
+        android:inputType="textMultiLine"
         android:layout_marginRight="30dp"
-        android:focusableInTouchMode="true"
-        android:inputType="number"/>
+        android:focusableInTouchMode="true" />
     <View
         android:id="@+id/detailSeperate"
         android:layout_width="match_parent"

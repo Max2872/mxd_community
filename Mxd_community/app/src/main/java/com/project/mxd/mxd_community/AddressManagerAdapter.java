@@ -19,6 +19,7 @@ import java.util.LinkedList;
 public class AddressManagerAdapter extends BaseAdapter {
     private LinkedList<AddressManagerItem> itemData;
     private Context itemContext;
+    private int selectedIndex = 0;
 
     public AddressManagerAdapter(LinkedList<AddressManagerItem>itemData,Context itemContext) {
         this.itemData = itemData;
@@ -41,31 +42,44 @@ public class AddressManagerAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         convertView = LayoutInflater.from(itemContext).inflate(R.layout.address_manager_item,parent,false);
         TextView reciever = (TextView) convertView.findViewById(R.id.reciever);
         TextView phoneNum = (TextView) convertView.findViewById(R.id.phoneNum);
         TextView address = (TextView) convertView.findViewById(R.id.address);
-        ImageView addressSelectedImage = (ImageView) convertView.findViewById(R.id.addressSelectedImage);
+        final ImageView addressSelectedImage = (ImageView) convertView.findViewById(R.id.addressSelectedImage);
         ImageView addressEditImage = (ImageView) convertView.findViewById(R.id.addressEditImage);
         ImageView addressDeleteImage = (ImageView) convertView.findViewById(R.id.addressDeleteImage);
         reciever.setText(itemData.get(position).getReceiver());
         phoneNum.setText(itemData.get(position).getPhoneNum());
         address.setText(itemData.get(position).getAddress());
 
+        if (selectedIndex == position) {
+            addressSelectedImage.setImageResource(R.drawable.address_selected);
+        }
+
         addressSelectedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectedIndex = position;
+                notifyDataSetChanged();
             }
         });
         addressEditImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(itemContext,AddressEditActivity.class);
+                intent.putExtra("isSelected",(selectedIndex == position));
+                intent.putExtra("reciever",itemData.get(position).getReceiver());
+                intent.putExtra("phoneNum",itemData.get(position).getPhoneNum());
+                intent.putExtra("address",itemData.get(position).getAddress());
+                itemContext.startActivity(intent);
             }
         });
         addressDeleteImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
             }
         });
         return convertView;
