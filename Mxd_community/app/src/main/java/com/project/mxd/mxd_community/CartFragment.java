@@ -43,9 +43,7 @@ public class CartFragment extends Fragment {
         orderSelectAll = (TextView)view.findViewById(R.id.orderSelectAll);
         orderAmount = (TextView)view.findViewById(R.id.orderAmount);
         orderSubmit = (TextView)view.findViewById(R.id.orderSubmit);
-        Drawable drawable=getResources().getDrawable(R.drawable.goods_normal);
-        drawable.setBounds(0,0,70,70);
-        orderSelectAll.setCompoundDrawables(drawable,null,null,null);
+
         orderSelectAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +67,9 @@ public class CartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                intent.putExtra("imageId",R.drawable.order_goods_bg);
+                intent.putExtra("name","DIY礼盒——用心创造");
+                intent.putExtra("price",calculatePrice() + "");
                 intent.setClass(getActivity(), EditOrderActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
@@ -79,12 +80,20 @@ public class CartFragment extends Fragment {
     }
 
     private void updateData(boolean isSelect) {
-        totalPrice = 0.0f;
         for (int i=0;i<itemData.size();i++) {
             itemData.get(i).setSelected(isSelect);
-            totalPrice += Float.parseFloat(itemData.get(i).getGoodsPrice());
         }
         adapter.notifyDataSetChanged();
+    }
+
+    private Float calculatePrice() {
+        totalPrice = 0.0f;
+        for (int i=0;i<itemData.size();i++) {
+            if (itemData.get(i).getIsSelected()) {
+                totalPrice += Float.parseFloat(itemData.get(i).getGoodsPrice()) *Integer.parseInt(itemData.get(i).getGoodNum());
+            }
+        }
+        return totalPrice;
     }
 
     @Override
@@ -130,6 +139,12 @@ public class CartFragment extends Fragment {
             cursor.close();
         }
         db.close();
+        if (orderSelectAll != null) {
+            Drawable drawable=getResources().getDrawable(R.drawable.goods_normal);
+            drawable.setBounds(0,0,70,70);
+            orderSelectAll.setCompoundDrawables(drawable,null,null,null);
+            orderAmount.setText("共：0件");
+        }
         adapter = new CartGoodsAdapter((LinkedList<CartGoodsItem>)itemData,context);
         list.setAdapter(adapter);
     }
