@@ -2,6 +2,7 @@ package com.project.mxd.mxd_community;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,6 +29,11 @@ public class CartFragment extends Fragment {
     private CartGoodsAdapter adapter = null;
     private ListView list;
     private TextView orderSelectAll;
+    private boolean selectAll = false;
+    private TextView orderAmount;
+    private TextView orderSubmit;
+    private Float totalPrice;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -35,11 +41,50 @@ public class CartFragment extends Fragment {
         context = getActivity();
         list = (ListView)view.findViewById(R.id.cart_list);
         orderSelectAll = (TextView)view.findViewById(R.id.orderSelectAll);
+        orderAmount = (TextView)view.findViewById(R.id.orderAmount);
+        orderSubmit = (TextView)view.findViewById(R.id.orderSubmit);
         Drawable drawable=getResources().getDrawable(R.drawable.goods_normal);
         drawable.setBounds(0,0,70,70);
         orderSelectAll.setCompoundDrawables(drawable,null,null,null);
-
+        orderSelectAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectAll = !selectAll;
+                if (selectAll) {
+                    Drawable drawable=getResources().getDrawable(R.drawable.goods_selected);
+                    drawable.setBounds(0,0,70,70);
+                    orderSelectAll.setCompoundDrawables(drawable,null,null,null);
+                    orderAmount.setText("共：" + itemData.size() + "件");
+                    updateData(true);
+                }else {
+                    Drawable drawable=getResources().getDrawable(R.drawable.goods_normal);
+                    drawable.setBounds(0,0,70,70);
+                    orderSelectAll.setCompoundDrawables(drawable,null,null,null);
+                    orderAmount.setText("共：0件");
+                    updateData(false);
+                }
+            }
+        });
+        orderSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), EditOrderActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                startActivity(intent);
+            }
+        });
         return view;
+    }
+
+    private void updateData(boolean isSelect) {
+        totalPrice = 0.0f;
+        for (int i=0;i<itemData.size();i++) {
+            itemData.get(i).setSelected(isSelect);
+            totalPrice += Float.parseFloat(itemData.get(i).getGoodsPrice());
+        }
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -61,15 +106,21 @@ public class CartFragment extends Fragment {
         String goodsName;
         String goodsPrice;
         String goodNum;
+        boolean isSelect;
         try {
             if (cursor != null && cursor.getCount() > 0) {
                 while(cursor.moveToNext()) {
                     if (cursor.getString(cursor.getColumnIndex("phoneNum")).equals(phoneNum)) {
+                        if (Integer.parseInt(cursor.getString(cursor.getColumnIndex("isSelected"))) == 1) {
+                            isSelect = true;
+                        }else {
+                            isSelect = false;
+                        }
                         goodsImageId = cursor.getString(cursor.getColumnIndex("goodsImageId"));
                         goodsName = cursor.getString(cursor.getColumnIndex("goodsName"));
                         goodsPrice = cursor.getString(cursor.getColumnIndex("goodsPrice"));
                         goodNum = cursor.getString(cursor.getColumnIndex("goodNum"));
-                        itemData.add(new CartGoodsItem(goodsImageId,goodsName,goodsPrice,goodNum));
+                        itemData.add(new CartGoodsItem(isSelect,goodsImageId,goodsName,goodsPrice,goodNum));
                     }
                 }
             }

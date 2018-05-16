@@ -19,7 +19,7 @@ public class CommunityOpenHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE orderInfo(userId INTEGER PRIMARY KEY AUTOINCREMENT,phoneNum text,goodsImageId text,goodsName text" +
                 ",goodsPrice VARCHAR(20)," + "recieverName text,recieverPhone VARCHAR(20),recieverAddress text)");
-        db.execSQL("CREATE TABLE cartGoodsInfo(userId INTEGER PRIMARY KEY AUTOINCREMENT,phoneNum text,goodsImageId text,goodsName text" +
+        db.execSQL("CREATE TABLE cartGoodsInfo(userId INTEGER PRIMARY KEY AUTOINCREMENT,isSelected VARCHAR(10),phoneNum text,goodsImageId text,goodsName text" +
                 ",goodsPrice VARCHAR(20)," + "goodNum VARCHAR(20))");
         db.execSQL("CREATE TABLE addressInfo(userId INTEGER PRIMARY KEY AUTOINCREMENT,phoneNum text,recieverName text,recieverPhone VARCHAR(20)" +
                 ",recieverAddress text)");

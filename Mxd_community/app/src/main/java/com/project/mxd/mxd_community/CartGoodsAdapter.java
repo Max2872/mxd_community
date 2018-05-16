@@ -39,17 +39,61 @@ public class CartGoodsAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         convertView = LayoutInflater.from(itemContext).inflate(R.layout.cart_content_item,parent,false);
+
+        ImageView cartSelectImage = (ImageView)convertView.findViewById(R.id.cartSelectImage);
         ImageView goodsImage = (ImageView) convertView.findViewById(R.id.goodsImage);
         TextView goods_name = (TextView) convertView.findViewById(R.id.goodsName);
         TextView price_num = (TextView) convertView.findViewById(R.id.goodsPrice);
-        TextView goodsNum = (TextView) convertView.findViewById(R.id.goodsNum);
+        final TextView goodsNum = (TextView) convertView.findViewById(R.id.goodsNum);
 
+        ImageView numDec = (ImageView) convertView.findViewById(R.id.numDec);
+        ImageView numAdd = (ImageView) convertView.findViewById(R.id.numAdd);
+
+        if (itemData.get(position).getIsSelected()) {
+            cartSelectImage.setImageResource(R.drawable.goods_selected);
+        }else {
+            cartSelectImage.setImageResource(R.drawable.goods_normal);
+        }
         goodsImage.setImageResource(Integer.parseInt(itemData.get(position).getGoodsImageId()));
         goods_name.setText("商品名：" + itemData.get(position).getGoodsName());
         price_num.setText("价格：" + itemData.get(position).getGoodsPrice());
         goodsNum.setText(itemData.get(position).getGoodNum());
+
+        cartSelectImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean tempSelected = itemData.get(position).getIsSelected();
+                tempSelected = !tempSelected;
+                itemData.get(position).setSelected(tempSelected);
+                notifyDataSetChanged();
+            }
+        });
+
+        numDec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int goodsAccount = Integer.parseInt(itemData.get(position).getGoodNum());
+                if (goodsAccount > 1) {
+                    goodsAccount -= 1;
+                }
+                goodsNum.setText(goodsAccount + "");
+                itemData.get(position).setGoodNum(goodsAccount + "");
+            }
+        });
+
+        numAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int goodsAccount = Integer.parseInt(itemData.get(position).getGoodNum());
+                if (goodsAccount < 99) {
+                    goodsAccount += 1;
+                }
+                goodsNum.setText(goodsAccount + "");
+                itemData.get(position).setGoodNum(goodsAccount + "");
+            }
+        });
 
         return convertView;
     }

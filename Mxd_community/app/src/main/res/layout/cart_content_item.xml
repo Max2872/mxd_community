@@ -8,8 +8,7 @@
         android:layout_height="25dp"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="40dp"
-        android:layout_marginLeft="15dp"
-        android:background="@drawable/goods_normal"/>
+        android:layout_marginLeft="15dp" />
     <ImageView
         android:id="@+id/goodsImage"
         android:layout_width="70dp"

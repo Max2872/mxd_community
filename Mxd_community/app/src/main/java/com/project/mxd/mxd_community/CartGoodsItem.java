@@ -9,14 +9,20 @@ public class CartGoodsItem {
     private String goodsName;
     private String goodsPrice;
     private String goodNum;
+    private boolean isSelected;
 
     public CartGoodsItem() {}
 
-    public CartGoodsItem(String goodsImageId,String goodsName, String goodsPrice,String goodNum) {
+    public CartGoodsItem(boolean isSelected, String goodsImageId,String goodsName, String goodsPrice,String goodNum) {
         this.goodsImageId = goodsImageId;
         this.goodsName = goodsName;
         this.goodsPrice = goodsPrice;
         this.goodNum = goodNum;
+        this.isSelected = isSelected;
+    }
+
+    public boolean getIsSelected() {
+        return isSelected;
     }
 
     public String getGoodsImageId() {
@@ -49,5 +55,9 @@ public class CartGoodsItem {
 
     public void setGoodNum(String goodNum) {
         this.goodNum = goodNum;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

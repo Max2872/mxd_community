@@ -64,36 +64,10 @@
             android:layout_alignParentTop="true"/>
     </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/checkLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/phoneLayout"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp">
-        <EditText
-            android:id="@+id/checkEdit"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:ems="20"
-            android:inputType="textPassword"
-            android:layout_alignParentTop="true"/>
-        <TextView
-            android:id="@+id/checkDesc"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:text="验证码"
-            android:textColor="#fff"
-            android:textSize="18sp"
-            android:background="@drawable/address_corner"/>
-    </RelativeLayout>
-    <RelativeLayout
         android:id="@+id/passwardLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/checkLayout"
+        android:layout_below="@+id/phoneLayout"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp">
@@ -115,6 +89,32 @@
             android:layout_toRightOf="@+id/passwardDesc"
             android:layout_alignParentTop="true"/>
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/checkLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passwardLayout"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp">
+        <EditText
+            android:id="@+id/checkEdit"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:ems="20"
+            android:inputType="textPassword"
+            android:layout_alignParentTop="true"/>
+        <TextView
+            android:id="@+id/checkDesc"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="验证码"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:background="@drawable/address_corner"/>
+    </RelativeLayout>
     <TextView
         android:id="@+id/loginDesc"
         android:layout_width="wrap_content"
@@ -122,7 +122,7 @@
         android:text="已有账号？去登录"
         android:textColor="#444"
         android:textSize="14sp"
-        android:layout_below="@+id/passwardLayout"
+        android:layout_below="@+id/checkLayout"
         android:layout_marginTop="15dp"
         android:layout_marginRight="40dp"
         android:layout_alignParentRight="true" />

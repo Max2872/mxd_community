@@ -66,6 +66,7 @@ public class CustomGoodsDetailActivity extends AppCompatActivity {
                 if (getPreference()) {
                     ContentValues value = new ContentValues();
                     value.put("phoneNum",phoneNum);
+                    value.put("isSelected","0");
                     value.put("goodsImageId",imageId);
                     value.put("goodsName",cartGoodsName);
                     value.put("goodsPrice",singlePrice);
