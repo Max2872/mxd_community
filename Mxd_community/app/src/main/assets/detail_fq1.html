@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+		<link rel="stylesheet" type="text/css" href="css/detail_mxd.css" />
+	</head>
+	<style type="text/css">
+		.detail_word{
+			display: none;
+			bottom: 70%;
+		}
+		.button{
+			
+		}
+	</style>
+	<body>
+		<div id="header">
+			<a class="acc_nav_back float_l" href="javascript:history.back(-1);"></a>
+			<div class="acc_nav01">
+		    </div>
+		</div>
+		<div class="detail_img">
+			<img src="imgmxd/父亲节/背景.jpg" />
+			<div class="detail_word">耳边响起了那熟悉的歌谣：没有天哪有地，没有地哪有家，没有家哪有你，没有你哪有我。谢谢父亲给我们一切。父亲节，祝你我的父亲都健康快乐！
+			</div>
+			<div class="detail_word">扣颗纽扣，系上父亲的爱；摸摸脑袋，那是无言的爱；坚定果敢，那是行动的表率；言语少，那是刚柔相济的爱。细节见关爱，父爱暖心怀。祝父亲节日快乐！
+			</div>
+			<div class="detail_word">你把手围成一个圆，帮我找到生命的中心；你把肩挺成一座山，助我攀上成功的高峰；你把背躬成一座桥，伴我渡过幸福的彼岸；你把眼融成一轮明月，伴我走过每一条人生路。父亲，是你的爱缔造了我，成就了我。今天是你的节日，我想大声地告诉你：我爱你！
+			</div>
+			<div class="detail_word">父爱，伟岸如青山，圣洁如冰雪，温暖如骄阳，宽广如江海。我在父亲的爱中成长，如今我长大了，我要用更多的爱来回报你，我最亲爱的老爸，父亲节快乐！
+			</div>
+			<div class="detail_word">有一种爱不言不语，却不离不散，那是父爱无边；有一份情不声不响，却不移不变，那是亲情永远；有一个人不偏不袒，却不能不见，那是父亲的脸，父亲节到了，愿天下所有的父亲，健康长寿，幸福永远。
+			</div>
+			<div class="button">切换</div>
+			<div class="button1">发送</div>
+			</div>
+	</body>
+	<script src="js/jquery.1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mxddetail.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.detail_word').eq(0).css({
+			'display':'block'
+		})
+		var n=0;
+		$('.button').on('click',function(){
+			n++;
+			if(n==5){
+				n=0;
+			}
+			for(let i=0;i<$('.detail_word').length;i++){
+				$('.detail_word').eq(i).css({
+					'display':'none'
+				})
+				$('.detail_word').eq(n).css({
+					'display':'block'
+				})
+			}
+		})
+		$('.button1').on('click',function(){
+			alert('发送成功')
+		})
+		})
+	</script>
+</html>

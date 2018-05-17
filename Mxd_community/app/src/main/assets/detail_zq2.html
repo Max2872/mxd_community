@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+		<link rel="stylesheet" type="text/css" href="css/detail_mxd.css" />
+	</head>
+	<style type="text/css">
+		.detail_word{
+			display: none;
+			bottom: 33%;
+			color: white;
+		}
+		.button{
+			
+		}
+	</style>
+	<body>
+		<div id="header">
+			<a class="acc_nav_back float_l" href="javascript:history.back(-1);"></a>
+			<div class="acc_nav01">
+		    </div>
+		</div>
+		<div class="detail_img">
+			<img src="imgmxd/中秋2/背景.jpg" />
+			<div class="detail_word">月影摇晃着欣喜，快乐洋溢着心底，花朵飘香着日子，月饼甜美着惦记，心愿徜徉着欢喜，祝福泛动着涟漪，心绪调剂着信息，只为送给你。中秋快乐！
+			</div>
+			<div class="detail_word">中秋佳节明月圆，良辰佳节月饼甜，花好月圆祝福你：慢慢品尝我的祝福情，慢慢咀嚼我的祝福话，慢慢回味我的祝福语。中秋平安快乐！
+			</div>
+			<div class="detail_word">一丝丝秋风，让我们感到秋凉；一缕缕月光，把我们友情照亮；一块块月饼，我们分开品尝；一个个心愿，一定要大声对你讲：中秋节快乐！
+			</div>
+			<div class="detail_word">圆圆的月儿天上挂，圆圆的月饼香天涯，圆圆的快乐美如花，圆圆的祝福到你家：美满日子玉润珠圆，幸福生活花好月圆，合家吉祥永团圆。节日快乐！
+			</div>
+			<div class="detail_word">月儿圆圆挂天边，荷叶圆圆水中间。梦想圆圆都实现，成功圆圆舞翩跹。快乐圆圆永不变，祝福圆圆情无限，中秋花好月又圆，幸福与你两团圆。信短情长言未尽，唯愿朋友多安康。中秋到了，祝节日快乐，合家团圆！
+			</div>
+			<div class="button">切换</div>
+			<div class="button1">发送</div>
+			</div>
+	</body>
+	<script src="js/jquery.1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mxddetail.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.detail_word').eq(0).css({
+			'display':'block'
+		})
+		var n=0;
+		$('.button').on('click',function(){
+			n++;
+			if(n==5){
+				n=0;
+			}
+			for(let i=0;i<$('.detail_word').length;i++){
+				$('.detail_word').eq(i).css({
+					'display':'none'
+				})
+				$('.detail_word').eq(n).css({
+					'display':'block'
+				})
+			}
+		})
+		$('.button1').on('click',function(){
+			alert('发送成功')
+		})
+		})
+	</script>
+</html>

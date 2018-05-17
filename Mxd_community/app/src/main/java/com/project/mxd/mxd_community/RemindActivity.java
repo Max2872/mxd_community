@@ -49,7 +49,7 @@ public class RemindActivity extends AppCompatActivity {
             }
         });
 
-        itemData = new LinkedList<RemindItem>();
+        itemData = new LinkedList();
         itemData.add(new RemindItem("2018年05月20日","7天","情人节，和xxx的xxx天。"));
         itemData.add(new RemindItem("2018年9月13日","3天","张三的生日，给她买个礼物。"));
         adapter = new RemindAdapter((LinkedList<RemindItem>)itemData,context);

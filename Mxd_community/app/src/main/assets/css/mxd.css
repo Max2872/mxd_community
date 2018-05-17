@@ -1,0 +1,43 @@
+.swiper-slide img{
+	width: 220px;
+	height: 174px;
+}
+.swiper-container{
+	text-align: center;
+}
+.jieri_ul,.shengri_ul{
+	list-style: none;
+	overflow: hidden; 
+	padding: 0;
+	width: 98%;
+	margin: 0 auto;
+}
+.jieri_ul>li,.shengri_ul>li{
+	float: left;
+	width: 45%;
+	height: 85px;
+	margin-left: 12px;
+	margin-top: 30px;
+}
+.jieri_ul>li img,.shengri_ul>li img{
+	width: 100%;
+	height: 100%;
+}
+.jieri>h3,.shengri>h3{
+	text-align: center;
+	color: #906262;
+}
+.jieri_ul a,.shengri_ul a{
+	text-decoration: none;
+}
+.jieri_ul div,.shengri_ul div{
+	text-align: center;
+	color: #906262;
+	background: #debd8d;
+	position: relative;
+	bottom: 27px;
+	
+}
+body{
+	background: beige;
+}

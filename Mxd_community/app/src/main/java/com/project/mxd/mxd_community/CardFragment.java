@@ -34,7 +34,7 @@ public class CardFragment extends Fragment {
                 return false;
             }
         });
-        webView.loadUrl("http://www.baidu.com/");
+        webView.loadUrl("file:///android_asset/mxd.html");
         return view;
     }
 

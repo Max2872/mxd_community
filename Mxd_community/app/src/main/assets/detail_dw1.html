@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+		<link rel="stylesheet" type="text/css" href="css/detail_mxd.css" />
+	</head>
+	<style type="text/css">
+		.detail_word{
+			display: none;
+			bottom: 60%;
+			color: white;
+		}
+		.button{
+			
+		}
+	</style>
+	<body>
+		<div id="header">
+			<a class="acc_nav_back float_l" href="javascript:history.back(-1);"></a>
+			<div class="acc_nav01">
+		    </div>
+		</div>
+		<div class="detail_img">
+			<img src="imgmxd/端午/背景.jpg" />
+			<div class="detail_word">翠绿的粽叶包裹着浓浓的情意，清香的糯米散发着融融的思念，殷红的蜜枣酝酿着纯纯的祭奠，热烈的龙舟游弋着绵绵的怀念，端午节到了，愿你在这充满文化气息的节日里，品尝美味粽子，感受华夏文化。
+			</div>
+			<div class="detail_word">送您一串香甜的粽子，让轻轻的叶子装着满满的问候，小小的菱角捻出丝丝的情意，长长的丝线系着柔柔的祝福，浓浓的清香露出片片真情，祝端午节快乐！
+			</div>
+			<div class="detail_word">今天端午节。我收集世上一切美好的东西为原料，用无忧为外衣，以我的真心祝福为丝带，为你包了一个特别的粽子送给你，吃了它你永远快乐，幸福。
+
+			</div>
+			<div class="detail_word">有一种快乐，漂漂洒洒；有一种自在，平平淡淡；有一种幸福，安安静静；有一种拥有，实实在在；有一种友谊，长长久久；有一个你，我天天祝福。祝端午节快乐！
+			</div>
+			<div class="detail_word">如果一朵花代表一个祝福，我送给你整个春天，如果一朵白云代表一份幸运，我送给你整个天空。我愿意把世上最好的祝福带给你，祝端午节快乐!
+			</div>
+			<div class="button">切换</div>
+			<div class="button1">发送</div>
+			</div>
+	</body>
+	<script src="js/jquery.1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mxddetail.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.detail_word').eq(0).css({
+			'display':'block'
+		})
+		var n=0;
+		$('.button').on('click',function(){
+			n++;
+			if(n==5){
+				n=0;
+			}
+			for(let i=0;i<$('.detail_word').length;i++){
+				$('.detail_word').eq(i).css({
+					'display':'none'
+				})
+				$('.detail_word').eq(n).css({
+					'display':'block'
+				})
+			}
+		})
+		$('.button1').on('click',function(){
+			alert('发送成功')
+		})
+		})
+	</script>
+</html>

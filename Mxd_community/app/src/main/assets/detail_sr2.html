@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+		<link rel="stylesheet" type="text/css" href="css/detail_mxd.css" />
+	</head>
+	<style type="text/css">
+		.detail_word{
+			display: none;
+			bottom: 42%;
+		}
+		.button{
+			
+		}
+	</style>
+	<body>
+		<div id="header">
+			<a class="acc_nav_back float_l" href="javascript:history.back(-1);"></a>
+			<div class="acc_nav01">
+		    </div>
+		</div>
+		<div class="detail_img">
+			<img src="imgmxd/生日2/背景.jpg" />
+			<div class="detail_word">有山有水有风景，景色绚丽心放松，有意有爱有真情，情义无价爱与共，有风有雨有天空，天空晴朗任你行，有聚有缘有宾朋，亲友挚爱化寒冰，有来有往有憧憬，前程似锦美梦成，祝你生日最高兴，时刻都有新感动！
+			</div>
+			<div class="detail_word">.意外的温暖，意外的感动，意外的关怀，意外的欣赏，意外的珍视，意外的美好。意外，其实不是意外；意外，其实是一种必然。我用温暖的微笑问候你，用如水的柔情拥抱你，用纯朴的真心陪伴你，用无瑕的美丽祝福你：亲，生日快乐，一生幸福！
+			</div>
+			<div class="detail_word">一年四季你在忙，辛苦奔波也安康，朋友恩情记心上，春夏秋冬不淡忘，多吃是福巧梳妆，早睡早起心敞亮，工作不要太疯狂，劳逸结合身体棒，朋友常聚人脉旺，游刃有余尽徜徉，我的短信圆梦想，生日快乐财源广！
+			</div>
+			<div class="detail_word">你在我的心中扎根，我们的友谊露重更深；你在我的牵挂中缤纷，我们的情感喜大普奔；你在我的坦诚中光临，我们的心有灵犀更近；你在我的问候中欢欣，我们的关爱情不自禁；你在我的祝福中兴奋，祝你生日快乐开心！
+			</div>
+			<div class="detail_word">蜗牛和兔子是好朋友。兔子邀请蜗牛参加自己的生日聚会。蜗牛爬啊爬，终于爬到兔子家，可兔子的生日过去半年了！蜗牛伤心的往回爬，刚到自家门口，兔子打来电话：明天是我生日，记得来参加哦！你每年的生日，我并不是有意要错过，我真心的想对你说：生日快乐！
+			</div>
+			<div class="button">切换</div>
+			<div class="button1">发送</div>
+			</div>
+	</body>
+	<script src="js/jquery.1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mxddetail.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.detail_word').eq(0).css({
+			'display':'block'
+		})
+		var n=0;
+		$('.button').on('click',function(){
+			n++;
+			if(n==5){
+				n=0;
+			}
+			for(let i=0;i<$('.detail_word').length;i++){
+				$('.detail_word').eq(i).css({
+					'display':'none'
+				})
+				$('.detail_word').eq(n).css({
+					'display':'block'
+				})
+			}
+		})
+		$('.button1').on('click',function(){
+			alert('发送成功')
+		})
+		})
+	</script>
+</html>

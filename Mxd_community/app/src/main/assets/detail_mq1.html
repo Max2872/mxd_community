@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+		<link rel="stylesheet" type="text/css" href="css/detail_mxd.css" />
+	</head>
+	<style type="text/css">
+		.detail_word{
+			display: none;
+			bottom: 20%;
+		}
+		.button{
+			
+		}
+	</style>
+	<body>
+		<div id="header">
+			<a class="acc_nav_back float_l" href="javascript:history.back(-1);"></a>
+			<div class="acc_nav01">
+		    </div>
+		</div>
+		<div class="detail_img">
+			<img src="imgmxd/母亲节/背景.jpg" />
+			<div class="detail_word">报不完的恩，是母亲的恩。还不了的情，是母亲的情。谢不了的爱，是母亲的爱。表达不了的真诚心，依然是浓浓的母爱情。母亲节，只有真真的祝福，愿母亲健康永远，快乐常伴！
+			</div>
+			<div class="detail_word">见面疼三分，出生始添乱，孩提不懂事，常惹您生怨。为人父母后，深明母亲念，如今母亲节，孝心一大片。短信打前战，愿娘多开心，健康是我愿。多多爱自己，保持好心态，儿女少挂牵，您美是晴天！
+			</div>
+			<div class="detail_word">每一次倔强，母亲都包容；每一次抉择，母亲都支持；每一次成功，母亲都高兴；每一次失败，母亲都鼓励；每一次梦里都有母亲爱的微笑，每一次醒来都有母亲爱的气息，母亲节到了，愿母亲健康快乐。
+			</div>
+			<div class="detail_word">孝心其实很容易：常回家看看！孝敬其实很简单：常打个电话问问！孝顺其实很朴实：常听听唠叨！孝意其实很直白：常聊聊家常！说不完的母爱事，道不尽的亲情缘，母爱无私、关爱无限，愿天下母亲健康、快乐、平安是我们共同的心愿！
+			</div>
+			<div class="detail_word">有一种爱不求回报，有一种爱大公无私，有一种爱奉献到老，有一种爱无怨无悔，这是伟大的母爱。母亲节到了，祝天下母亲幸福、快乐、健康！
+			</div>
+			<div class="button">切换</div>
+			<div class="button1">发送</div>
+			</div>
+	</body>
+	<script src="js/jquery.1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mxddetail.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.detail_word').eq(0).css({
+			'display':'block'
+		})
+		var n=0;
+		$('.button').on('click',function(){
+			n++;
+			if(n==5){
+				n=0;
+			}
+			for(let i=0;i<$('.detail_word').length;i++){
+				$('.detail_word').eq(i).css({
+					'display':'none'
+				})
+				$('.detail_word').eq(n).css({
+					'display':'block'
+				})
+			}
+		})
+		$('.button1').on('click',function(){
+			alert('发送成功')
+		})
+		})
+	</script>
+</html>
