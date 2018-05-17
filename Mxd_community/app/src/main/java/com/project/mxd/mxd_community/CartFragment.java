@@ -9,12 +9,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -33,6 +35,7 @@ public class CartFragment extends Fragment {
     private TextView orderAmount;
     private TextView orderSubmit;
     private Float totalPrice;
+    private int selectCount = 0;
 
     @Nullable
     @Override
@@ -66,6 +69,10 @@ public class CartFragment extends Fragment {
         orderSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (selectCount == 0) {
+                    customToast("请选择商品",2);
+                    return;
+                }
                 Intent intent = new Intent();
                 intent.putExtra("imageId",R.drawable.order_goods_bg);
                 intent.putExtra("name","DIY礼盒——用心创造");
@@ -90,6 +97,7 @@ public class CartFragment extends Fragment {
         totalPrice = 0.0f;
         for (int i=0;i<itemData.size();i++) {
             if (itemData.get(i).getIsSelected()) {
+                selectCount += 1;
                 totalPrice += Float.parseFloat(itemData.get(i).getGoodsPrice()) *Integer.parseInt(itemData.get(i).getGoodNum());
             }
         }
@@ -147,6 +155,12 @@ public class CartFragment extends Fragment {
         }
         adapter = new CartGoodsAdapter((LinkedList<CartGoodsItem>)itemData,context);
         list.setAdapter(adapter);
+    }
+
+    private void customToast(String string,int showTime) {
+        Toast toast = Toast.makeText(getActivity(),string,showTime);
+        toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL,0,0);
+        toast.show();
     }
 }
 
