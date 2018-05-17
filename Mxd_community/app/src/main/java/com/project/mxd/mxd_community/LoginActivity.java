@@ -131,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 if (!isLoginMode) {
-                    if (checkEdit.getText().toString() != "0519") {
+                    if (!checkEdit.getText().toString().equals("0519")) {
                         customToast("请输入有效的验证码",2);
                         return;
                     }
