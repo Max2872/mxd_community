@@ -40,9 +40,9 @@ public class RemindAddActivity extends AppCompatActivity {
                 ContentValues value = new ContentValues();
                 value.put("phoneNum",phoneNum);
                 value.put("remindTime",remindTimeContent.getText().toString());
-//                value.put("remindAdranceDay",phoneContent.getText().toString());
+                value.put("remindAdranceDay","7");
                 value.put("remark",remindRemark.getText().toString());
-                db.insert("addressInfo","phoneNum",value);
+                db.insert("remindInfo","phoneNum",value);
                 db.close();
 
                 finish();
