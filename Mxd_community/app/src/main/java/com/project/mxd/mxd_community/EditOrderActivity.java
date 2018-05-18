@@ -93,7 +93,9 @@ public class EditOrderActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                intent.putExtra("shouldClickReturn",true);
                 intent.setClass(EditOrderActivity.this,AddressManagerActivity.class);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -198,5 +200,16 @@ public class EditOrderActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(EditOrderActivity.this,string,showTime);
         toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL,0,0);
         toast.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == 2){
+            Bundle b = data.getExtras();
+            recieverName.setText(b.get("recieverName").toString());
+            recieverPhone.setText(b.get("recieverPhone").toString());
+            recieverAddress.setText(b.get("recieverAddress").toString());
+        }
     }
 }

@@ -100,7 +100,7 @@
             android:layout_alignLeft="@+id/goodsName"
             android:layout_below="@+id/goodsName"
             android:layout_marginTop="3dp"
-            android:text="介绍：**************************"
+            android:text="介绍：简约，源自隐藏的精密.（Simplicity,is hidden complexity.）"
             android:textColor="#888"
             android:textSize="12sp"/>
         <TextView

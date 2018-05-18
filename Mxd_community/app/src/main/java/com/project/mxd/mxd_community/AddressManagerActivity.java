@@ -31,10 +31,14 @@ public class AddressManagerActivity extends AppCompatActivity implements MyClick
     private ImageView backImage;
     private String phoneNum;
     private CommunityOpenHelper communityOpenHelper;
+    private boolean shouldClickReturn = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.address_manager);
+
+        Intent getIntent = getIntent();
+        shouldClickReturn = getIntent.getBooleanExtra("shouldClickReturn",false);
         context = AddressManagerActivity.this;
         backImage = (ImageView)findViewById(R.id.top_bar_back);
         list = (ListView)findViewById(R.id.address_list);
@@ -97,6 +101,18 @@ public class AddressManagerActivity extends AppCompatActivity implements MyClick
     @Override
     public void clickListener(View v) {
         int tag = Integer.parseInt(v.getTag().toString());
+        if (tag < 0 && shouldClickReturn) {
+            tag = -tag - 1;
+            Intent intent = new Intent();
+            Bundle bundle = new Bundle();
+            bundle.putString("recieverName", itemData.get(tag).getReceiver());
+            bundle.putString("recieverPhone", itemData.get(tag).getPhoneNum());
+            bundle.putString("recieverAddress", itemData.get(tag).getAddress());
+            intent.putExtras(bundle);
+            setResult(2, intent);//返回值调用函数，其中2为resultCode，返回值的标志
+            finish();//传值结束
+            return;
+        }
         SQLiteDatabase db = communityOpenHelper.getWritableDatabase();
         db.delete("addressInfo","phoneNum=? and recieverName=?",new String[] {phoneNum,itemData.get(tag).getReceiver()});
         db.close();

@@ -53,6 +53,7 @@ public class AddressManagerAdapter extends BaseAdapter implements OnClickListene
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         convertView = LayoutInflater.from(itemContext).inflate(R.layout.address_manager_item,parent,false);
+        convertView.setTag(-position - 1);
         TextView reciever = (TextView) convertView.findViewById(R.id.reciever);
         TextView phoneNum = (TextView) convertView.findViewById(R.id.phoneNum);
         TextView address = (TextView) convertView.findViewById(R.id.address);
@@ -64,6 +65,7 @@ public class AddressManagerAdapter extends BaseAdapter implements OnClickListene
         phoneNum.setText(itemData.get(position).getPhoneNum());
         address.setText(itemData.get(position).getAddress());
 
+        convertView.setOnClickListener(this);
         if (selectedIndex == position) {
             addressSelectedImage.setImageResource(R.drawable.address_selected);
         }

@@ -93,19 +93,17 @@ public class GiftBoxListActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                int goodsPosition = position;
                 if (shouldTurnCustom) {
                     intent.putExtra("imageId",itemData.get(position).getImageId());
                 }else {
                     intent.putExtra("imageId",goodsData[itemData.get(position).getIndex()]);
-                    intent.putExtra("cartImageId",itemData.get(position).getImageId());
                 }
                 intent.putExtra("name",itemData.get(position).getBoxName());
                 intent.putExtra("price",itemData.get(position).getBoxPrice());
                 if (shouldTurnCustom) {
-                    intent.setClass(GiftBoxListActivity.this,GoodsDetailActivity.class);
-                }else {
                     intent.setClass(GiftBoxListActivity.this,CustomGoodsDetailActivity.class);
+                }else {
+                    intent.setClass(GiftBoxListActivity.this,GoodsDetailActivity.class);
                 }
                 startActivity(intent);
 
