@@ -112,11 +112,13 @@ public class EditOrderActivity extends AppCompatActivity {
         orderNumAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (goodsCount < 99) {
+                if (goodsCount < 10) {
                     goodsCount += 1;
                     submitPrice = goodsCount * singlePrice;
                     orderAmount.setText("￥" + String.format("%.2f", submitPrice).toString() + "元");
                     orderNum.setText(goodsCount + "");
+                }else {
+                    customToast("库存不足",2);
                 }
             }
         });

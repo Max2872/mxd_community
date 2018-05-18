@@ -28,6 +28,7 @@ public class CustomGoodsDetailActivity extends AppCompatActivity {
     private int imageId;
     private String singlePrice;
     private String cartGoodsName;
+    private int cartImageId;
 
     private TextView cartBtn;
     private TextView cartHint;
@@ -47,6 +48,7 @@ public class CustomGoodsDetailActivity extends AppCompatActivity {
 
         Intent getIntent = getIntent();
         imageId = getIntent.getIntExtra("imageId",R.mipmap.ic_launcher);
+        cartImageId = getIntent.getIntExtra("cartImageId",R.mipmap.ic_launcher);
         singlePrice = getIntent.getStringExtra("price");
         cartGoodsName = getIntent.getStringExtra("name");
         goodsImage.setImageResource(imageId);
@@ -67,7 +69,7 @@ public class CustomGoodsDetailActivity extends AppCompatActivity {
                     ContentValues value = new ContentValues();
                     value.put("phoneNum",phoneNum);
                     value.put("isSelected","0");
-                    value.put("goodsImageId",imageId);
+                    value.put("goodsImageId",cartImageId);
                     value.put("goodsName",cartGoodsName);
                     value.put("goodsPrice",singlePrice);
                     value.put("goodNum",1);
