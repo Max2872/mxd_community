@@ -22,6 +22,7 @@ public class GoodsDetailActivity extends AppCompatActivity {
     private TextView buyBtn;
     private int imageId;
     private String singlePrice;
+    private int orderImageId;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,7 @@ public class GoodsDetailActivity extends AppCompatActivity {
 
         Intent getIntent = getIntent();
         imageId = getIntent.getIntExtra("imageId",R.mipmap.ic_launcher);
+        orderImageId = getIntent.getIntExtra("orderImageId",R.mipmap.ic_launcher);
         singlePrice = getIntent.getStringExtra("price");
         goodsImage.setImageResource(imageId);
         goodsName.setText(getIntent.getStringExtra("name"));
@@ -49,7 +51,7 @@ public class GoodsDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (getPreference()) {
                     Intent intent = new Intent();
-                    intent.putExtra("imageId",imageId);
+                    intent.putExtra("imageId",orderImageId);
                     intent.putExtra("name",goodsName.getText());
                     intent.putExtra("price",singlePrice);
                     intent.setClass(GoodsDetailActivity.this, EditOrderActivity.class);

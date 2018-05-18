@@ -97,6 +97,7 @@ public class GiftBoxListActivity extends AppCompatActivity {
                     intent.putExtra("imageId",itemData.get(position).getImageId());
                 }else {
                     intent.putExtra("imageId",goodsData[itemData.get(position).getIndex()]);
+                    intent.putExtra("orderImageId",itemData.get(position).getImageId());
                 }
                 intent.putExtra("name",itemData.get(position).getBoxName());
                 intent.putExtra("price",itemData.get(position).getBoxPrice());
