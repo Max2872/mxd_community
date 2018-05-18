@@ -93,6 +93,14 @@ public class CustomGoodsDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (getPreference()) {
+                    ContentValues value = new ContentValues();
+                    value.put("phoneNum",phoneNum);
+                    value.put("isSelected","0");
+                    value.put("goodsImageId",imageId);
+                    value.put("goodsName",cartGoodsName);
+                    value.put("goodsPrice",singlePrice);
+                    value.put("goodNum",1);
+                    db.insert("cartGoodsInfo","phoneNum",value);
                     customToast("添加成功",2);
                 }else {
                     //跳转登录
