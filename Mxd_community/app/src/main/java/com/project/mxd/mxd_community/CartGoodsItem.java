@@ -1,7 +1,7 @@
 package com.project.mxd.mxd_community;
 
 /**
- * Created by mao on 2018/4/25.
+ * Created by mxd on 2018/4/25.
  */
 
 public class CartGoodsItem {

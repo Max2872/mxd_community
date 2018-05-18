@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.githang.statusbar.StatusBarCompat;
 
 /**
- * Created by maohs on 2018/2/26.
+ * Created by mxd on 2018/2/26.
  */
 
 public class MainTabbarActivity extends AppCompatActivity implements View.OnClickListener {

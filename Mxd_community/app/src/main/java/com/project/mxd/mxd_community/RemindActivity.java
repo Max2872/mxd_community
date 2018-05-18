@@ -13,7 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by maohs on 2018/3/30.
+ * Created by mxd on 2018/3/30.
  */
 
 public class RemindActivity extends AppCompatActivity {

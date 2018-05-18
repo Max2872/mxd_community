@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Created by maohs on 2018/3/29.
+ * Created by mxd on 2018/3/29.
  */
 
 public class CustomGoodsDetailActivity extends AppCompatActivity {

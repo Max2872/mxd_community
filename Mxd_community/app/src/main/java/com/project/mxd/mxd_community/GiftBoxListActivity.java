@@ -16,7 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by maohs on 2018/3/5.
+ * Created by mxd on 2018/3/5.
  */
 
 public class GiftBoxListActivity extends AppCompatActivity {

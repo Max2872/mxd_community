@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
- * Created by maohs on 2018/2/27.
+ * Created by mxd on 2018/2/27.
  */
 
 public class GiftFragment extends Fragment {

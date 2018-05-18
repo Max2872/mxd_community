@@ -13,7 +13,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 /**
- * Created by maohs on 2018/2/27.
+ * Created by mxd on 2018/2/27.
  */
 
 public class CardFragment extends Fragment {

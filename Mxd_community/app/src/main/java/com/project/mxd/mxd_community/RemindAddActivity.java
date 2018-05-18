@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 /**
- * Created by mao on 2018/4/25.
+ * Created by mxd on 2018/4/25.
  */
 
 public class RemindAddActivity extends AppCompatActivity {

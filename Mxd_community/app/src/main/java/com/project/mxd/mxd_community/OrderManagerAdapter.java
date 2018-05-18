@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import java.util.LinkedList;
 
 /**
- * Created by maohs on 2018/3/5.
+ * Created by mxd on 2018/3/5.
  */
 
 public class OrderManagerAdapter extends BaseAdapter {

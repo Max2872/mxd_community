@@ -14,7 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by maohs on 2018/3/5.
+ * Created by mxd on 2018/3/5.
  */
 
 public class OrderManagerActivity extends AppCompatActivity {

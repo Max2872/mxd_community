@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Created by mao on 2018/5/7.
+ * Created by mxd on 2018/5/7.
  */
 
 public class OrderResultActivity extends AppCompatActivity {

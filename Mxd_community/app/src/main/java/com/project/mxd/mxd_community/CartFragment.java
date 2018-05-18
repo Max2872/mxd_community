@@ -22,7 +22,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by maohs on 2018/2/27.
+ * Created by mxd on 2018/2/27.
  */
 
 public class CartFragment extends Fragment {

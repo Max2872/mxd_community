@@ -15,7 +15,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 /**
- * Created by mao on 2018/5/12.
+ * Created by mxd on 2018/5/12.
  */
 
 public class AddressEditActivity extends AppCompatActivity {

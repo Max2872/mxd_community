@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.LinkedList;
 
 /**
- * Created by mao on 2018/4/25.
+ * Created by mxd on 2018/4/25.
  */
 
 public class RemindAdapter extends BaseAdapter {

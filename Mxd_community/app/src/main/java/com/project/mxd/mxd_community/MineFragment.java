@@ -19,7 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Created by maohs on 2018/2/27.
+ * Created by mxd on 2018/2/27.
  */
 
 public class MineFragment extends Fragment {

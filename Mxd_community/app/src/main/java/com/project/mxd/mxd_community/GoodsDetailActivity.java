@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Created by maohs on 2018/3/27.
+ * Created by mxd on 2018/3/27.
  */
 
 public class GoodsDetailActivity extends AppCompatActivity {

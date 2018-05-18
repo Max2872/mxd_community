@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by maohs on 2018/3/27.
+ * Created by mxd on 2018/3/27.
  */
 
 public class GiftBoxSettingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{

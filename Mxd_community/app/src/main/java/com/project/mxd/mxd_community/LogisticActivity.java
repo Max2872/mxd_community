@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 /**
- * Created by maohs on 2018/3/21.
+ * Created by mxd on 2018/3/21.
  */
 
 public class LogisticActivity extends AppCompatActivity {

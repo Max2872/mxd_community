@@ -14,7 +14,7 @@ import android.view.View.OnClickListener;
 import java.util.LinkedList;
 
 /**
- * Created by mao on 2018/4/27.
+ * Created by mxd on 2018/4/27.
  */
 
 public class AddressManagerAdapter extends BaseAdapter implements OnClickListener {

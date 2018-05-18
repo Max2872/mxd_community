@@ -12,7 +12,7 @@ import android.widget.BaseAdapter;
 import java.util.ArrayList;
 
 /**
- * Created by maohs on 2018/3/5.
+ * Created by mxd on 2018/3/5.
  */
 
 public abstract class GiftBoxAdapter<T> extends BaseAdapter {
