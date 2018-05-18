@@ -90,7 +90,10 @@ public class EditOrderActivity extends AppCompatActivity {
         recieverInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent();
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                intent.setClass(EditOrderActivity.this,AddressManagerActivity.class);
             }
         });
 

@@ -13,6 +13,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -25,6 +26,7 @@ public class GiftBoxListActivity extends AppCompatActivity {
     private BaseAdapter itemAdapter = null;
     private ArrayList<GiftBoxItem>itemData = null;
     private GiftBoxItem goodsItem = null;
+    private  boolean shouldTurnCustom = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,37 +41,41 @@ public class GiftBoxListActivity extends AppCompatActivity {
             }
         });
 
+        shouldTurnCustom = getPreference();
         itemData = new ArrayList<>();
-        itemData.add(new GiftBoxItem(R.drawable.meishi188,"数码蛋糕","188"));
-        itemData.add(new GiftBoxItem(R.drawable.meishi50,"美食--芝麻丸","49.9"));
-        itemData.add(new GiftBoxItem(R.drawable.meishi0188,"美食--蛋糕","188"));
+        final int[] goodsData = {R.drawable.goodslihe68,R.drawable.goodslihe359,R.drawable.goodslihe699,R.drawable.goodslihe1299};
+        if (shouldTurnCustom) {
+            itemData.add(new GiftBoxItem(R.drawable.meishi188,"数码蛋糕","188",1));
+            itemData.add(new GiftBoxItem(R.drawable.meishi0188,"美食蛋糕","188",1));
 
-        itemData.add(new GiftBoxItem(R.drawable.shuma3600,"数码--相机","3600"));
-        itemData.add(new GiftBoxItem(R.drawable.shuma999,"数码--录音笔","999"));
-        itemData.add(new GiftBoxItem(R.drawable.shuma28,"数码--水晶球","28"));
-        itemData.add(new GiftBoxItem(R.drawable.shuma80,"数码--小电扇","79.9"));
-        itemData.add(new GiftBoxItem(R.drawable.shuma499,"数码--手表","499"));
+            itemData.add(new GiftBoxItem(R.drawable.shuma3600,"相机","3600",1));
+            itemData.add(new GiftBoxItem(R.drawable.shuma999,"录音笔","999",1));
+            itemData.add(new GiftBoxItem(R.drawable.shuma28,"水晶球","28",1));
+            itemData.add(new GiftBoxItem(R.drawable.shuma80,"小电扇","79.9",1));
+            itemData.add(new GiftBoxItem(R.drawable.shuma499,"数码手表","499",1));
 
-        itemData.add(new GiftBoxItem(R.drawable.fushi1,"礼盒5","1"));
-        itemData.add(new GiftBoxItem(R.drawable.fushi45,"礼盒6","45"));
-        itemData.add(new GiftBoxItem(R.drawable.fushi55,"礼盒6","55"));
-        itemData.add(new GiftBoxItem(R.drawable.fushi65,"礼盒6","65"));
-        itemData.add(new GiftBoxItem(R.drawable.fushi1299,"礼盒6","1299"));
+            itemData.add(new GiftBoxItem(R.drawable.fushi1,"严选羊毛围巾","599",1));
+            itemData.add(new GiftBoxItem(R.drawable.fushi45,"魔术贴","45",1));
+            itemData.add(new GiftBoxItem(R.drawable.fushi55,"车载支架","55",1));
+            itemData.add(new GiftBoxItem(R.drawable.fushi65,"香囊","65",1));
+            itemData.add(new GiftBoxItem(R.drawable.fushi1299,"纯羊毛围巾","1299",1));
 
-        itemData.add(new GiftBoxItem(R.drawable.liwu120,"礼盒7","120"));
-        itemData.add(new GiftBoxItem(R.drawable.liwu186,"礼盒8","186"));
-        itemData.add(new GiftBoxItem(R.drawable.liwu220,"礼盒7","220"));
-        itemData.add(new GiftBoxItem(R.drawable.liwu223,"礼盒8","223"));
-        itemData.add(new GiftBoxItem(R.drawable.liwu268,"礼盒7","268"));
+            itemData.add(new GiftBoxItem(R.drawable.liwu120,"严选钢笔","120",1));
+            itemData.add(new GiftBoxItem(R.drawable.liwu186,"复古笔记本","186",1));
+            itemData.add(new GiftBoxItem(R.drawable.liwu223,"紫砂壶","223",1));
+            itemData.add(new GiftBoxItem(R.drawable.liwu268,"永生花","268",1));
 
-        itemData.add(new GiftBoxItem(R.drawable.xiangshui98,"礼盒8","98"));
-        itemData.add(new GiftBoxItem(R.drawable.xiangshui148,"礼盒8","148"));
-        itemData.add(new GiftBoxItem(R.drawable.xiangshui1189,"礼盒8","1189"));
-
-        filterGoods();
-        if (getPreference()) {
+            itemData.add(new GiftBoxItem(R.drawable.xiangshui98,"香水","98",1));
+            itemData.add(new GiftBoxItem(R.drawable.xiangshui1189,"CHANEL香水","1189",1));
+        }else {
             top_bar_text.setText("商品列表");
+            itemData.add(new GiftBoxItem(R.drawable.lihe1,"实用礼盒","68",0));
+            itemData.add(new GiftBoxItem(R.drawable.lihe2,"温暖礼盒","359",1));
+            itemData.add(new GiftBoxItem(R.drawable.lihe3,"情怀礼盒","699",2));
+            itemData.add(new GiftBoxItem(R.drawable.lihe4,"超级礼盒","1299",3));
+
         }
+        filterGoods();
         itemAdapter = new GiftBoxAdapter<GiftBoxItem>(itemData, R.layout.gift_box_item) {
             @Override
             public void bindView(ViewHolder holder, GiftBoxItem obj) {
@@ -87,13 +93,18 @@ public class GiftBoxListActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                intent.putExtra("imageId",itemData.get(position).getImageId());
+                int goodsPosition = position;
+                if (shouldTurnCustom) {
+                    intent.putExtra("imageId",itemData.get(position).getImageId());
+                }else {
+                    intent.putExtra("imageId",goodsData[itemData.get(position).getIndex()]);
+                }
                 intent.putExtra("name",itemData.get(position).getBoxName());
                 intent.putExtra("price",itemData.get(position).getBoxPrice());
-                if (getPreference()) {
-                    intent.setClass(GiftBoxListActivity.this,CustomGoodsDetailActivity.class);
-                }else {
+                if (shouldTurnCustom) {
                     intent.setClass(GiftBoxListActivity.this,GoodsDetailActivity.class);
+                }else {
+                    intent.setClass(GiftBoxListActivity.this,CustomGoodsDetailActivity.class);
                 }
                 startActivity(intent);
 

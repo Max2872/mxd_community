@@ -26,5 +26,60 @@
             android:textColor="@color/white"
             android:text="新建提醒"/>
     </RelativeLayout>
-
+    <TextView
+        android:id="@+id/remindTimeDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_bar"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:text="庆祝日期："
+        android:textColor="#aaa"
+        android:textSize="17sp"/>
+    <EditText
+        android:id="@+id/remindTimeContent"
+        style="?android:attr/textViewStyle"
+        android:background="@null"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/remindTimeDesc"
+        android:layout_alignLeft="@+id/remindTimeDesc"
+        android:paddingLeft="10dp"
+        android:layout_alignParentRight="true"
+        android:inputType="textMultiLine"
+        android:layout_marginRight="30dp"
+        android:focusableInTouchMode="true" />
+    <View
+        android:id="@+id/remindTimeSeperate"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_below="@+id/remindTimeContent"
+        android:layout_marginTop="10dp"
+        android:layout_alignLeft="@+id/remindTimeContent"
+        android:layout_marginRight="20dp"
+        android:background="@color/seperateBlack"/>
+    <TextView
+        android:id="@+id/remindRemarkDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/remindTimeSeperate"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:text="备注："
+        android:textColor="#aaa"
+        android:textSize="17sp"/>
+    <EditText
+        android:id="@+id/remindRemark"
+        style="?android:attr/textViewStyle"
+        android:background="@drawable/remind_corner"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/remindRemarkDesc"
+        android:layout_marginTop="10dp"
+        android:layout_alignLeft="@+id/remindRemarkDesc"
+        android:paddingLeft="10dp"
+        android:layout_alignParentRight="true"
+        android:inputType="textMultiLine"
+        android:layout_marginRight="30dp"
+        android:focusableInTouchMode="true" />
 </RelativeLayout>

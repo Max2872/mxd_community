@@ -35,7 +35,7 @@ public class CartFragment extends Fragment {
     private TextView orderAmount;
     private TextView orderSubmit;
     private Float totalPrice;
-    private int selectCount = 0;
+    private String selectCount = "0";
 
     @Nullable
     @Override
@@ -69,14 +69,15 @@ public class CartFragment extends Fragment {
         orderSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selectCount == 0) {
+                Float tempPrice = calculatePrice();
+                if (selectCount.equals("0")) {
                     customToast("请选择商品",2);
                     return;
                 }
                 Intent intent = new Intent();
                 intent.putExtra("imageId",R.drawable.order_goods_bg);
                 intent.putExtra("name","DIY礼盒——用心创造");
-                intent.putExtra("price",calculatePrice() + "");
+                intent.putExtra("price", tempPrice + "");
                 intent.setClass(getActivity(), EditOrderActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
@@ -97,7 +98,7 @@ public class CartFragment extends Fragment {
         totalPrice = 0.0f;
         for (int i=0;i<itemData.size();i++) {
             if (itemData.get(i).getIsSelected()) {
-                selectCount += 1;
+                selectCount = Integer.parseInt(selectCount) + 1 + "";
                 totalPrice += Float.parseFloat(itemData.get(i).getGoodsPrice()) *Integer.parseInt(itemData.get(i).getGoodNum());
             }
         }

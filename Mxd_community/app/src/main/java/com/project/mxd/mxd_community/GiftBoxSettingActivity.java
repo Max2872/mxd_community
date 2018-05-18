@@ -1,6 +1,8 @@
 package com.project.mxd.mxd_community;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -49,6 +51,10 @@ public class GiftBoxSettingActivity extends AppCompatActivity implements Adapter
         backImage = (ImageView)findViewById(R.id.top_bar_back);
         ensureBtn = (TextView)findViewById(R.id.ensureBtn);
         resetBtn = (TextView)findViewById(R.id.resetBtn);
+        TextView top_bar_text = (TextView)findViewById(R.id.top_bar_text);
+        if (getPreference()) {
+            top_bar_text.setText("自由搭配");
+        }
         backImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,5 +171,11 @@ public class GiftBoxSettingActivity extends AppCompatActivity implements Adapter
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    private boolean getPreference() {
+        SharedPreferences preferences = this.getSharedPreferences("userPreference", Context.MODE_PRIVATE);
+        boolean shouldTurnCustom = preferences.getBoolean("shouldTurnCustom",false);
+        return shouldTurnCustom;
     }
 }
