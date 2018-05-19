@@ -78,7 +78,15 @@ public class GiftBoxSettingActivity extends AppCompatActivity implements Adapter
         resetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                spin_who.setSelection(0);
+                spin_money.setSelection(0);
+                spin_use.setSelection(0);
+                spin_kind.setSelection(0);
 
+                whoString = spin_who_Array.get(0).getContent();
+                moneyString = spin_money_Array.get(0).getContent();
+                useString = spin_use_Array.get(0).getContent();
+                kindString = spin_kind_Array.get(0).getContent();
             }
         });
         bindViews();
@@ -167,6 +175,7 @@ public class GiftBoxSettingActivity extends AppCompatActivity implements Adapter
                 break;
         }
     }
+
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
