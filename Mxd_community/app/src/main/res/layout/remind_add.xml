@@ -72,7 +72,7 @@
         android:id="@+id/sex_rg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/remindTimeDesc"
+        android:layout_below="@+id/remindDayDesc"
         android:layout_marginTop="15dp"
         android:layout_alignLeft="@+id/remindTimeSeperate"
         android:layout_marginRight="25dp"
