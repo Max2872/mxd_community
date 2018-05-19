@@ -45,34 +45,34 @@ public class GiftBoxListActivity extends AppCompatActivity {
         itemData = new ArrayList<>();
         final int[] goodsData = {R.drawable.goodslihe68,R.drawable.goodslihe359,R.drawable.goodslihe699,R.drawable.goodslihe1299};
         if (shouldTurnCustom) {
-            itemData.add(new GiftBoxItem(R.drawable.meishi188,"数码蛋糕","188",1));
-            itemData.add(new GiftBoxItem(R.drawable.meishi0188,"美食蛋糕","188",1));
+            itemData.add(new GiftBoxItem(R.drawable.meishi188,"数码蛋糕","188",1,"情侣"));
+            itemData.add(new GiftBoxItem(R.drawable.meishi0188,"美食蛋糕","188",1,"情侣"));
 
-            itemData.add(new GiftBoxItem(R.drawable.shuma3600,"相机","3600",1));
-            itemData.add(new GiftBoxItem(R.drawable.shuma999,"录音笔","999",1));
-            itemData.add(new GiftBoxItem(R.drawable.shuma28,"水晶球","28",1));
-            itemData.add(new GiftBoxItem(R.drawable.shuma80,"小电扇","79.9",1));
-            itemData.add(new GiftBoxItem(R.drawable.shuma499,"数码手表","499",1));
+            itemData.add(new GiftBoxItem(R.drawable.shuma3600,"相机","3600",1,"商业伙伴"));
+            itemData.add(new GiftBoxItem(R.drawable.shuma999,"录音笔","999",1,"商业伙伴"));
+            itemData.add(new GiftBoxItem(R.drawable.shuma28,"水晶球","28",1,"朋友"));
+            itemData.add(new GiftBoxItem(R.drawable.shuma80,"小电扇","79.9",1,"朋友"));
+            itemData.add(new GiftBoxItem(R.drawable.shuma499,"数码手表","499",1,"商业伙伴"));
 
-            itemData.add(new GiftBoxItem(R.drawable.fushi1,"严选羊毛围巾","599",1));
-            itemData.add(new GiftBoxItem(R.drawable.fushi45,"魔术贴","45",1));
-            itemData.add(new GiftBoxItem(R.drawable.fushi55,"车载支架","55",1));
-            itemData.add(new GiftBoxItem(R.drawable.fushi65,"香囊","65",1));
-            itemData.add(new GiftBoxItem(R.drawable.fushi1299,"纯羊毛围巾","1299",1));
+            itemData.add(new GiftBoxItem(R.drawable.fushi1,"严选羊毛围巾","599",1,"朋友"));
+            itemData.add(new GiftBoxItem(R.drawable.fushi45,"魔术贴","45",1,"朋友"));
+            itemData.add(new GiftBoxItem(R.drawable.fushi55,"车载支架","55",1,"朋友"));
+            itemData.add(new GiftBoxItem(R.drawable.fushi65,"香囊","65",1,"朋友"));
+            itemData.add(new GiftBoxItem(R.drawable.fushi1299,"纯羊毛围巾","1299",1,"朋友"));
 
-            itemData.add(new GiftBoxItem(R.drawable.liwu120,"严选钢笔","120",1));
-            itemData.add(new GiftBoxItem(R.drawable.liwu186,"复古笔记本","186",1));
-            itemData.add(new GiftBoxItem(R.drawable.liwu223,"紫砂壶","223",1));
-            itemData.add(new GiftBoxItem(R.drawable.liwu268,"永生花","268",1));
+            itemData.add(new GiftBoxItem(R.drawable.liwu120,"严选钢笔","120",1,"长辈"));
+            itemData.add(new GiftBoxItem(R.drawable.liwu186,"复古笔记本","186",1,"长辈"));
+            itemData.add(new GiftBoxItem(R.drawable.liwu223,"紫砂壶","223",1,"长辈"));
+            itemData.add(new GiftBoxItem(R.drawable.liwu268,"永生花","268",1,"长辈"));
 
-            itemData.add(new GiftBoxItem(R.drawable.xiangshui98,"香水","98",1));
-            itemData.add(new GiftBoxItem(R.drawable.xiangshui1189,"CHANEL香水","1189",1));
+            itemData.add(new GiftBoxItem(R.drawable.xiangshui98,"香水","98",1,"情侣"));
+            itemData.add(new GiftBoxItem(R.drawable.xiangshui1189,"CHANEL香水","1189",1,"情侣"));
         }else {
             top_bar_text.setText("商品列表");
-            itemData.add(new GiftBoxItem(R.drawable.lihe1,"实用礼盒","68",0));
-            itemData.add(new GiftBoxItem(R.drawable.lihe2,"温暖礼盒","359",1));
-            itemData.add(new GiftBoxItem(R.drawable.lihe3,"情怀礼盒","699",2));
-            itemData.add(new GiftBoxItem(R.drawable.lihe4,"超级礼盒","1299",3));
+            itemData.add(new GiftBoxItem(R.drawable.lihe1,"实用礼盒","68",0,"长辈,情侣,朋友,商业伙伴"));
+            itemData.add(new GiftBoxItem(R.drawable.lihe2,"温暖礼盒","359",1,"长辈,情侣,朋友,商业伙伴"));
+            itemData.add(new GiftBoxItem(R.drawable.lihe3,"情怀礼盒","699",2,"长辈,情侣,朋友,商业伙伴"));
+            itemData.add(new GiftBoxItem(R.drawable.lihe4,"超级礼盒","1299",3,"长辈,情侣,朋友,商业伙伴"));
 
         }
         filterGoods();
@@ -147,9 +147,12 @@ public class GiftBoxListActivity extends AppCompatActivity {
         ArrayList<GiftBoxItem> tempData = new ArrayList<>();
         for (int i=0;i<itemData.size();i++) {
            if (Float.parseFloat(itemData.get(i).getBoxPrice()) < maxMoney && Float.parseFloat(itemData.get(i).getBoxPrice()) > minMoney) {
-               tempData.add(itemData.get(i));
+               if (itemData.get(i).getWhoString().contains(whoString)) {
+                   tempData.add(itemData.get(i));
+               }
             }
         }
+
         itemData = tempData;
     }
 

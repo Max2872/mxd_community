@@ -59,10 +59,54 @@
         android:layout_marginRight="20dp"
         android:background="@color/seperateBlack"/>
     <TextView
-        android:id="@+id/remindRemarkDesc"
+        android:id="@+id/remindDayDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/remindTimeSeperate"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:text="提前几天："
+        android:textColor="#aaa"
+        android:textSize="17sp"/>
+    <RadioGroup
+        android:id="@+id/sex_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/remindTimeDesc"
+        android:layout_marginTop="15dp"
+        android:layout_alignLeft="@+id/remindTimeSeperate"
+        android:layout_marginRight="25dp"
+        android:orientation="horizontal">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7天"
+            android:id="@+id/seven_rb"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3天"
+            android:id="@+id/three_rb"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1天"
+            android:id="@+id/one_rb"/>
+    </RadioGroup>
+    <View
+        android:id="@+id/remindDaySeperate"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_below="@+id/sex_rg"
+        android:layout_marginTop="10dp"
+        android:layout_alignLeft="@+id/remindTimeContent"
+        android:layout_marginRight="20dp"
+        android:background="@color/seperateBlack"/>
+    <TextView
+        android:id="@+id/remindRemarkDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/remindDaySeperate"
         android:layout_marginTop="25dp"
         android:layout_marginLeft="20dp"
         android:text="备注："
@@ -73,9 +117,9 @@
         style="?android:attr/textViewStyle"
         android:background="@drawable/remind_corner"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:layout_below="@+id/remindRemarkDesc"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_alignLeft="@+id/remindRemarkDesc"
         android:paddingLeft="10dp"
         android:layout_alignParentRight="true"

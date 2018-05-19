@@ -9,12 +9,14 @@ public class GiftBoxItem {
     private String boxName;
     private String boxPrice;
     private int index;
+    private String whoString;
     public GiftBoxItem() {}
-    public GiftBoxItem(int imageId, String boxName, String boxPrice,int index) {
+    public GiftBoxItem(int imageId, String boxName, String boxPrice,int index,String whoString) {
         this.imageId = imageId;
         this.boxName = boxName;
         this.boxPrice = boxPrice;
         this.index = index;
+        this.whoString = whoString;
     }
 
     public int getIndex() {
@@ -33,6 +35,10 @@ public class GiftBoxItem {
         return boxPrice;
     }
 
+    public String getWhoString() {
+        return whoString;
+    }
+
     public void setImageId(int imageId) {
         this.imageId = imageId;
     }
@@ -43,5 +49,9 @@ public class GiftBoxItem {
 
     public void setBoxPrice(String boxPrice) {
         this.boxPrice = boxPrice;
+    }
+
+    public void setWhoString(String whoString) {
+        this.whoString = whoString;
     }
 }
